@@ -1,0 +1,22 @@
+// Load bootstrap/font-awesome sprockets first
+@import "bootstrap-sprockets";
+@import "font-awesome-sprockets";
+
+// this MUST occur before you import bootstrap
+@import "ood_appkit/bootstrap-overrides";
+
+// Load up bootstrap/font-awesome style sheet
+@import "bootstrap";
+@import "font-awesome";
+
+// this MUST occur after the bootstrap import
+@import "ood_appkit";
+
+// Load up dataTables bootstrap specific styles
+@import "dataTables/bootstrap/3/jquery.dataTables.bootstrap";
+
+// Your custom css styles below (must be manually added)
+
+.navbar-inverse .navbar-text {
+  color: #ccc;
+}
