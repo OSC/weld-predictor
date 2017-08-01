@@ -1,4 +1,13 @@
 Rails.application.routes.draw do
+  resources :simulations do
+    member do
+      put 'submit'
+      put 'copy'
+    end
+  end
+
+  root 'simulations#index'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
