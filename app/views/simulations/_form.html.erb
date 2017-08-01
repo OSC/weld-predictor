@@ -1,0 +1,164 @@
+<%# Uses rails_bootstrap_form gem. API at: https://github.com/bootstrap-ruby/rails-bootstrap-forms %>
+<% if false %>
+  <%= bootstrap_form_for(simulation) do |f| %>
+    <%= f.alert_message "Please fix the errors below." %>
+
+    <%= f.text_field :status %>
+    <%= f.text_area :job_cache %>
+
+    <%= f.submit 'Save', class: 'btn btn-primary' %>
+    <%= f.button 'Reset', type: :reset, class: 'btn btn-default' %>
+
+    <hr>
+
+    <%= link_to 'Back', simulations_path, class: 'btn btn-default' %>
+    <%= link_to 'Show', simulation, class: 'btn btn-primary' unless simulation.new_record? %>
+  <% end %>
+<% end %>
+
+<div class="row">
+  <!-- Control Panel -->
+  <div class="col-md-3 box">
+    <div class="panel-group" id="accordion">
+      <div class="panel panel-default">
+        <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" data-target="#collapse-start">
+          <h4 class="panel-title">Start</h4>
+        </div>
+        <div id="collapse-start" class="panel-collapse collapse in">
+          <div class="panel-body">
+            <%# TODO:
+                    [ ] Consider vue.js for binding values.
+                    [ ] Job description is hardcoded here, it should be linked to server data.
+                    [ ] Should Walltime be an integer only? Validate on server side.
+                    [ ] Weld Techniques are hard-coded.
+                %>
+            <div class="form-group">
+              <label for="username">User Name:</label>
+              <input class="form-control" id="username" value="<%= OSC::Machete::User.new.name %>" disabled/>
+            </div>
+            <div class="form-group">
+              <label for="eweld_job_description">Description:</label>
+              <input class="form-control" id="eweld_job_description" placeholder="Provide Job Description"
+                   maxlength="50"/>
+            </div>
+            <div class="form-group">
+              <label for="walltime_requested">Walltime (1 to 10 hours):</label>
+              <input class="form-control" id="walltime_requested" type="number" value="1" min="1" max="10" />
+            </div>
+            <div class="form-group">
+              <label for="weld-technique">Weld Technique:</label>
+              <select class="form-control" id="weld-technique">
+                <option>GMAW</option>
+                <option>Pulsed GMAW</option>
+                <option>Weaved Pulsed GMAW</option>
+                <option>GTAW</option>
+                <option>SAW</option>
+                <option>SMAW</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" data-target="#collapse-dimensions">
+          <h4 class="panel-title">Fixture Shape</h4>
+        </div>
+        <div id="collapse-dimensions" class="panel-collapse collapse">
+          <div class="panel-body">
+            <%# TODO:
+                    [ ] These shapes should probably be stored as models and iterated over for populating this list.
+            %>
+            <div class="form-group">
+              <label for="weld-technique">Fixture Shape:</label>
+              <select class="form-control" id="weld-technique">
+                <option>Plate</option>
+                <option>T-Plate</option>
+                <option>Pipe</option>
+                <option>T-Pipe</option>
+                <option>Lap Joint</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" data-target="#collapse-geometry">
+          <h4 class="panel-title">Weld Geometry</h4>
+        </div>
+        <div id="collapse-geometry" class="panel-collapse collapse">
+          <div class="panel-body">
+            <div class="form-group">
+              <label for="weld-geometry">Joint Design:</label>
+              <select class="form-control" id="weld-geometry">
+                <option>Bead-on-Plate</option>
+                <option>Bevel-Groove</option>
+                <option>Compound-Bevel</option>
+                <option>J-Groove</option>
+                <option>U-Groove</option>
+                <option>V-Groove</option>
+                <option>T-Bevel</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" data-target="#collapse-materials">
+          <h4 class="panel-title">Materials</h4>
+        </div>
+        <div id="collapse-materials" class="panel-collapse collapse">
+          <div class="panel-body">
+            <div class="form-group">
+              <label for="weld-geometry">Part 1 - Base Metal:</label>
+              <select class="form-control" id="weld-geometry">
+                <option>A572</option>
+                <option>AH36</option>
+                <option>AISI-1018</option>
+                <option>AISI-4140</option>
+                <option>AISI-8620</option>
+                <option>ASTM2.25Cr-1.0Mo</option>
+                <option>...</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="weld-geometry">Part 2 - Base Metal:</label>
+              <select class="form-control" id="weld-geometry">
+                <option>A572</option>
+                <option>AH36</option>
+                <option>AISI-1018</option>
+                <option>AISI-4140</option>
+                <option>AISI-8620</option>
+                <option>ASTM2.25Cr-1.0Mo</option>
+                <option>...</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="weld-geometry">Filler Wire:</label>
+              <select class="form-control" id="weld-geometry">
+                <option>E91T1-B3L</option>
+                <option>...</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading"  data-toggle="collapse" data-parent="#accordion" data-target="#collapse-procedure">
+          <h4 class="panel-title">Weld Procedure</h4>
+        </div>
+        <div id="collapse-procedure" class="panel-collapse collapse">
+          <div class="panel-body">
+            TODO
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <button type="button" class="col-md-12 btn btn-primary">Submit</button>
+    </div>
+  </div>
+  <!-- Graphic Panel -->
+  <div class="col-md-9 box">
+
+  </div>
+</div>

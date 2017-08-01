@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  status: MyString
+  job_cache: MyText
+  staged_dir: MyString
+
+two:
+  status: MyString
+  job_cache: MyText
+  staged_dir: MyString

@@ -1,0 +1,39 @@
+<div class="page-header">
+  <h2>Listing Simulations</h2>
+</div>
+
+<table class="table data-table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Status</th>
+      <th>Status</th>
+      <th>Job cache</th>
+      <th class="no-sort"></th>
+      <th class="no-sort"></th>
+      <th class="no-sort"></th>
+      <th class="no-sort"></th>
+      <th class="no-sort"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @simulations.each do |simulation| %>
+      <tr>
+        <td><%= simulation.id %></td>
+        <td><%= status_label(simulation) %></td>
+        <td><%= simulation.status %></td>
+        <td><%= simulation.job_cache %></td>
+        <td><%= link_to 'Submit', submit_simulation_path(simulation), method: :put, class: 'btn btn-success btn-sm' unless simulation.submitted? %></td>
+        <td><%= link_to 'Show', simulation, class: 'btn btn-primary btn-sm' %></td>
+        <td><%= link_to 'Edit', edit_simulation_path(simulation), class: 'btn btn-default btn-sm' unless simulation.submitted? %></td>
+        <td><%= link_to 'Copy', copy_simulation_path(simulation), method: :put, class: 'btn btn-default btn-sm' %></td>
+        <td><%= link_to 'Destroy', simulation, method: :delete, class: 'btn btn-danger btn-sm', data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Simulation', new_simulation_path %>
