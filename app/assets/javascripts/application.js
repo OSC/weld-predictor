@@ -15,4 +15,6 @@
 //= require bootstrap-sprockets
 //= require dataTables/jquery.dataTables
 //= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
+//= require three.js-r86/build/three.js
+//= require three.js-r86/examples/js/controls/TrackballControls
 //= require_tree .
