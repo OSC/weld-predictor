@@ -164,14 +164,17 @@
 
   <script>
       var container;
-      var camera, scene, renderer, controls;
+      var camera, scene, renderer, controls, width;
       init();
       animate();
       function init() {
+
+
+          width = $("#weld-render-view").width();
           renderer = new THREE.WebGLRenderer();
           renderer.setClearColor( 0x222222 );
           renderer.setPixelRatio( window.devicePixelRatio );
-          renderer.setSize( window.innerWidth, window.innerHeight );
+          renderer.setSize( width, width * .75 );
           $("#weld-render-view").append( renderer.domElement );
           scene = new THREE.Scene();
           camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 1000 );
@@ -179,12 +182,30 @@
           controls = new THREE.TrackballControls( camera, renderer.domElement );
           controls.minDistance = 200;
           controls.maxDistance = 500;
-          scene.add( new THREE.AmbientLight( 0x222222 ) );
+          var ambientlight = new THREE.AmbientLight( 0xffffff );
+          ambientlight.intensity = 0.6;
+          scene.add( ambientlight );
           var light = new THREE.PointLight( 0xffffff );
           light.position.copy( camera.position );
           scene.add( light );
+
+
+          // Lap Joint
+          var width = 300;
+          var height = 10;
+          var depth = 250;
+          var material = new THREE.MeshLambertMaterial({color: '#a8b2c1', map: new THREE.TextureLoader().load( "<%= asset_path 'assets/three.js-r86/examples/textures/square-outline.png' %>" )});
+          var cube = new THREE.CubeGeometry(width, height, depth);
+          cube = new THREE.Mesh( cube, material );
+          cube.position.set(width * 0.25, -(height * 0.5), 0);
+          scene.add(cube);
+          var cube2 = new THREE.CubeGeometry(width, height, depth);
+          cube2 = new THREE.Mesh( cube2, material );
+          cube2.position.set(-(width * 0.25), height * 0.5, 0);
+          scene.add(cube2);
+
           //
-          var closedSpline = new THREE.CatmullRomCurve3( [
+          /*var closedSpline = new THREE.CatmullRomCurve3( [
               new THREE.Vector3( -60, -100,  60 ),
               new THREE.Vector3( -60,   20,  60 ),
               new THREE.Vector3( -60,  120,  60 ),
@@ -248,6 +269,8 @@
           var mesh = new THREE.Mesh( geometry, materials );
           mesh.position.set( 50, 100, 50 );
           scene.add( mesh );
+          */
+
       }
       function animate() {
           requestAnimationFrame( animate );
