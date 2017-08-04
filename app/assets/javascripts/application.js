@@ -18,4 +18,5 @@
 //= require three.js-r86/build/three.js
 //= require three.js-r86/examples/js/controls/TrackballControls
 //= require three.js-r86/examples/js/controls/OrthographicTrackballControls
+//= require vuejs-2.4.0/vue
 //= require_tree .
