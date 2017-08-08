@@ -30,3 +30,5 @@
 
 # Do not version the dependencies
 /vendor/bundle
+/public/packs
+/node_modules

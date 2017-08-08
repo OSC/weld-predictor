@@ -51,3 +51,5 @@ gem 'jquery-datatables-rails', '~> 3.4'
 gem 'rails_12factor', group: :production
 gem 'osc_machete_rails', '~> 1.2'
 gem 'ood_appkit', '~> 0.3'
+
+gem 'webpacker', '~> 2.0'
