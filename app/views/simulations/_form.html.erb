@@ -16,6 +16,7 @@
   <% end %>
 <% end %>
 
+
 <div class="row" id="vue-app">
   <!-- Control Panel -->
   <div class="col-md-3 box">
@@ -70,16 +71,7 @@
             <%# TODO:
                     [ ] These shapes should probably be stored as models and iterated over for populating this list.
             %>
-            <div class="form-group">
-              <label for="weld-technique">Fixture Shape:</label>
-              <select class="form-control" id="weld-technique">
-                <option>Plate</option>
-                <option>T-Plate</option>
-                <option>Pipe</option>
-                <option>T-Pipe</option>
-                <option>Lap Joint</option>
-              </select>
-            </div>
+            <fixture_shape></fixture_shape>
           </div>
         </div>
       </div>
@@ -164,6 +156,8 @@
 
   </div>
 </div>
+
+
 
 <script>
     var container;
