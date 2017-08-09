@@ -7,6 +7,5 @@ import App from './fixture_shape.vue'
 
 document.addEventListener('DOMContentLoaded', () => {
     document.body.appendChild(document.createElement('fixture_shape'))
-const app = new Vue(App).$mount('fixture_shape')
-
+    const app = new Vue(App).$mount('fixture_shape')
 })
