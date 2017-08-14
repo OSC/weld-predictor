@@ -72,12 +72,10 @@
             %>
             <div class="form-group">
               <label for="weld-technique">Fixture Shape:</label>
-              <select class="form-control" id="weld-technique">
-                <option>Plate</option>
-                <option>T-Plate</option>
-                <option>Pipe</option>
-                <option>T-Pipe</option>
-                <option>Lap Joint</option>
+              <select v-model="selected" class="form-control" id="weld-technique">
+                <option v-for="fixture_shape in fixture_shapes" v-bind:value="fixture_shape.value">
+                  {{ fixture_shape.title }}
+                </option>
               </select>
             </div>
           </div>
