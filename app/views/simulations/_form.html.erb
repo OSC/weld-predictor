@@ -61,47 +61,8 @@
           </div>
         </div>
       </div>
-      <div class="panel panel-default">
-        <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" data-target="#collapse-dimensions">
-          <h4 class="panel-title">Fixture Shape</h4>
-        </div>
-        <div id="collapse-dimensions" class="panel-collapse collapse">
-          <div class="panel-body">
-            <%# TODO:
-                    [ ] These shapes should probably be stored as models and iterated over for populating this list.
-            %>
-            <div class="form-group">
-              <label for="weld-technique">Fixture Shape:</label>
-              <select v-model="selected" class="form-control" id="weld-technique">
-                <option v-for="fixture_shape in fixture_shapes" v-bind:value="fixture_shape.value">
-                  {{ fixture_shape.title }}
-                </option>
-              </select>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="panel panel-default">
-        <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" data-target="#collapse-geometry">
-          <h4 class="panel-title">Weld Geometry</h4>
-        </div>
-        <div id="collapse-geometry" class="panel-collapse collapse">
-          <div class="panel-body">
-            <div class="form-group">
-              <label for="weld-geometry">Joint Design:</label>
-              <select class="form-control" id="weld-geometry">
-                <option>Bead-on-Plate</option>
-                <option>Bevel-Groove</option>
-                <option>Compound-Bevel</option>
-                <option>J-Groove</option>
-                <option>U-Groove</option>
-                <option>V-Groove</option>
-                <option>T-Bevel</option>
-              </select>
-            </div>
-          </div>
-        </div>
-      </div>
+      <fixture-shape></fixture-shape>
+      <joint-design></joint-design>
       <div class="panel panel-default">
         <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" data-target="#collapse-materials">
           <h4 class="panel-title">Materials</h4>
