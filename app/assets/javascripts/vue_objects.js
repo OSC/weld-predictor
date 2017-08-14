@@ -1,6 +1,7 @@
 
 $(document).ready(function () {
 
+    /*
     new Vue({
         el: "#vue-app",
         data: {
@@ -14,4 +15,7 @@ $(document).ready(function () {
 
         }
     })
+    */
+
+    render_three_shape();
 })
