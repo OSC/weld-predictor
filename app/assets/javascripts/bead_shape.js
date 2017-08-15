@@ -56,7 +56,7 @@ window.onload = function() {
 
     path.quadraticCurveTo(a_b, x_y_2);
     path.quadraticCurveTo(c_d, start);
-    path.selected = true;
+    //path.selected = true;
     path.closed = true;
     path.fillColor = '#42b9f4';
     // Draw the view now:
