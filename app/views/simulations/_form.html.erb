@@ -1,4 +1,5 @@
 <%# Uses rails_bootstrap_form gem. API at: https://github.com/bootstrap-ruby/rails-bootstrap-forms %>
+
 <% if false %>
   <%= bootstrap_form_for(simulation) do |f| %>
     <%= f.alert_message "Please fix the errors below." %>
@@ -25,11 +26,70 @@
           <h4 class="panel-title">Start</h4>
         </div>
         <div id="collapse-start" class="panel-collapse collapse in">
-          <start-panel v-bind:user_name="user_name"></start-panel>
+          <div class="panel-body">
+            <div class="form-group">
+              <label for="username">User Name:</label>
+              <input v-model="start_panel_data.user_name" class="form-control" id="username" disabled/>
+            </div>
+            <div class="form-group">
+              <label for="eweld_job_description">Description:</label>
+              <input v-model="start_panel_data.job_description" class="form-control" id="eweld_job_description" placeholder="Provide Job Description"
+                     maxlength="50" />
+            </div>
+            <div class="form-group">
+              <label for="walltime_requested">Walltime (1 to 10 hours):</label>
+              <input class="form-control" id="walltime_requested" type="number" value="1" min="1" max="10" />
+            </div>
+            <div class="form-group">
+              <label for="weld-technique">Weld Technique:</label>
+              <select class="form-control" id="weld-technique">
+                <option>GMAW</option>
+                <option>LBW</option>
+                <option>HLAW</option>
+                <option>Pulsed GMAW</option>
+                <option>Weaved Pulsed GMAW</option>
+                <option>GTAW</option>
+                <option>SAW</option>
+                <option>SMAW</option>
+              </select>
+            </div>
+          </div>
         </div>
       </div>
-      <fixture-shape></fixture-shape>
-      <joint-design></joint-design>
+      <div class="panel panel-default">
+        <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" data-target="#collapse-dimensions">
+          <h4 class="panel-title">Fixture Shape</h4>
+        </div>
+        <div id="collapse-dimensions" class="panel-collapse collapse">
+          <div class="panel-body">
+            <div class="form-group">
+              <label for="fixture-shape">Fixture Shape:</label>
+              <select v-model="fixture_data.selected" class="form-control" id="fixture-shape">
+                <option v-for="fixture_shape in fixture_data.fixture_shapes" v-bind:value="fixture_shape.value">
+                  {{ fixture_shape.title }}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" data-target="#collapse-geometry">
+          <h4 class="panel-title">Weld Geometry</h4>
+        </div>
+        <div id="collapse-geometry" class="panel-collapse collapse">
+          <div class="panel-body">
+            <div class="form-group">
+              <label for="joint-design">Joint Design:</label>
+              <select v-model="joint_data.selected" class="form-control" id="joint-design">
+                <option v-for="joint_design in joint_data.joint_designs" v-bind:value="joint_design.value">
+                  {{ joint_design.title }}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="panel panel-default">
         <div class="panel-heading"  data-toggle="collapse" data-parent="#accordion" data-target="#collapse-bead-definition">
           <h4 class="panel-title">Bead Definition</h4>
@@ -144,6 +204,7 @@
         </div>
       </div>
     </div>
+
     <div>
       <button type="button" class="col-md-12 btn btn-primary">Submit</button>
     </div>

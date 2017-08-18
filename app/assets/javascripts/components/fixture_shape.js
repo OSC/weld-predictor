@@ -1,3 +1,4 @@
+/*
 Vue.component('fixture-shape', {
     template: `
             <div class="panel panel-default">
@@ -31,3 +32,4 @@ Vue.component('fixture-shape', {
         }
     }
 });
+*/

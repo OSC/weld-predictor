@@ -1,3 +1,4 @@
+/*
 Vue.component('joint-design', {
     template: `
           <div class="panel panel-default">
@@ -33,3 +34,4 @@ Vue.component('joint-design', {
         }
     }
 });
+*/

@@ -1,14 +1,15 @@
+/*
 Vue.component('start-panel', {
     template: `
           <div class="panel-body">    
             <div class="form-group">
               <label for="username">User Name:</label>
-              <input class="form-control" id="username" :value="user_name" disabled/>
+              <input v-model:value="start_panel_data.user_name" class="form-control" id="username" disabled/>
             </div>
             <div class="form-group">
-              <label for="eweld_job_description">Description:</label>
-              <input class="form-control" id="eweld_job_description" placeholder="Provide Job Description"
-            maxlength="50"/>
+              <label for="eweld_job_description">Description:</label>              
+              <input v-model:value="start_panel_data.job_description" class="form-control" id="eweld_job_description" placeholder="Provide Job Description"
+            maxlength="50" />
             </div>
             <div class="form-group">
               <label for="walltime_requested">Walltime (1 to 10 hours):</label>
@@ -29,7 +30,36 @@ Vue.component('start-panel', {
             </div>
           </div>
         `,
-    props: ['user_name']
+    props: {
+        user_name: {
+            type: String,
+            required: true
+        }
+    },
+    data: function () {
+        return {
+            start_panel_data: {
+                user_name: this.user_name,
+                job_description: this.job_description
+            }
+        }
+    },
+    computed: {
+        updated() {
+            return {
+                start_panel_data: {
+                    user_name: this.start_panel_data.user_name,
+                    job_description: this.start_panel_data.job_description
+                }
+            }
+        }
+    },
+    watch: {
+        updated() {
+            this.$emit('changed', this.updated);
+        }
+    }
 });
 
 
+*/
