@@ -7,7 +7,8 @@ $(document).ready(function () {
         data: {
             start_panel_data: {
                 user_name: current_user,
-                job_description: ''
+                job_description: '',
+                walltime_hours: 1
             },
             fixture_data: {
                 fixture_shapes: [
@@ -48,7 +49,20 @@ $(document).ready(function () {
                     {value: 'v_groove', title: 'V-Groove'},
                     {value: 't_bevel', title: 'T-Bevel'}
                 ],
-                selected: 'bead_on_plate'
+                selected: 'bead_on_plate',
+                backing_bar: {
+                    present: 'false',
+                    height: 0.5,
+                    width: 4.0
+                },
+                root_gap: {
+                    present: 'false',
+                    range: 0.04
+                },
+                joint_angle: {
+                    alpha: 0.1,
+                    beta: 4.0
+                }
             },
             bead_data: {
                 bead_types: [
@@ -69,7 +83,42 @@ $(document).ready(function () {
                     {value: 'custom', title: 'Custom'}
                 ],
                 beads: {}
+            },
+            material_data: {
+                base_material1: {
+                    type: 'HSLA-100'
+                }
+                base_material2: {
+                    type: 'X65'
+                }
+                filler_material: {
+                    type: 'MIL-100S-1'
+                }
+            },
+            procedure_data: {
+                pre_heat_temp_F: 70,
+                pre_heat_temp_C: 21,
+                inter_pass_temp_F: 212,
+                inter_pass_temp_C: 100,
+                weld_passes: [
+                    {
+                        current_A: 180,
+                        voltage_V: 19,
+                        travel_ipm: 7.8
+                    },
+                    {
+                        current_A: 200,
+                        voltage_V: 22.5,
+                        travel_ipm: 7.5
+                    }
+                ]
+            },
+            fixture_data: {
+                clamps: []
+                coolers: []
+                monitors: []
             }
+
         }
     })
 
