@@ -87,10 +87,10 @@ $(document).ready(function () {
             material_data: {
                 base_material1: {
                     type: 'HSLA-100'
-                }
+                },
                 base_material2: {
                     type: 'X65'
-                }
+                },
                 filler_material: {
                     type: 'MIL-100S-1'
                 }
@@ -114,11 +114,10 @@ $(document).ready(function () {
                 ]
             },
             fixture_data: {
-                clamps: []
-                coolers: []
+                clamps: [],
+                coolers: [],
                 monitors: []
             }
-
         }
     })
 

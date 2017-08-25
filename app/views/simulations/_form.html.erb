@@ -18,6 +18,7 @@
 <% end %>
 
 <div class="row" id="vue-app">
+  <%= bootstrap_form_for(simulation) do |f| %>
   <!-- Control Panel -->
   <div class="col-md-3 box">
     <div class="panel-group" id="accordion">
@@ -206,9 +207,11 @@
     </div>
 
     <div>
-      <button type="button" class="col-md-12 btn btn-primary">Submit</button>
+      <%= f.hidden_field 'simulation_data', 'v-model' => "data" %>
+      <%= f.submit 'Save', class: 'btn btn-primary' %>
     </div>
   </div>
+  <% end %>
   <!-- Graphic Panel -->
   <div id="weld-render-view" class="col-md-9 box">
 
