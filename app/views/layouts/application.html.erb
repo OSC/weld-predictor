@@ -13,6 +13,7 @@
 
   <script>
     var current_user = "<%= OSC::Machete::User.new.name %>";
+    var AUTH_TOKEN = $('meta[name=csrf-token]').attr('content');
   </script>
 </head>
 <body>
