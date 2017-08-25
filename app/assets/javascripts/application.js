@@ -20,4 +20,5 @@
 //= require three.js-r86/examples/js/controls/OrthographicTrackballControls
 //= require vuejs-2.4.0/vue
 //= require paper.js-0.11.4/dist/paper-full
+//= require js-routes
 //= require_tree .
