@@ -24,7 +24,8 @@ class SimulationsController < ApplicationController
   # POST /simulations
   # POST /simulations.json
   def create
-    @simulation = Simulation.new(simulation_params)
+    @simulation = Simulation.new
+    @simulation.data = simulation_params
 
     respond_to do |format|
       if @simulation.save
@@ -105,6 +106,6 @@ class SimulationsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def simulation_params
-      params.require(:simulation).permit!
+      params.require(:simulation_data)
     end
 end

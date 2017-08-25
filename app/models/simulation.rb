@@ -2,7 +2,7 @@ class Simulation < ActiveRecord::Base
   has_many :simulation_jobs, dependent: :destroy
   has_machete_workflow_of :simulation_jobs
 
-  attr_accessor :simulation_data
+  attr_accessor :data
 
   # Name that defines the template/target dirs
   def staging_template_name
