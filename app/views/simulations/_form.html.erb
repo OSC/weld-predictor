@@ -166,21 +166,18 @@
             </div>
             <div class="form-group">
               <label for="weld-geometry">Part 2 - Base Metal:</label>
-              <select class="form-control" id="weld-geometry">
-                <option>A572</option>
-                <option>AH36</option>
-                <option>AISI-1018</option>
-                <option>AISI-4140</option>
-                <option>AISI-8620</option>
-                <option>ASTM2.25Cr-1.0Mo</option>
-                <option>...</option>
+              <select v-model="material_data.base_material2.selected" class="form-control" id="weld-geometry">
+                <option v-for="type in material_data.base_material_types" v-bind="type">
+                  {{ type }}
+                </option>
               </select>
             </div>
             <div class="form-group">
               <label for="weld-geometry">Filler Wire:</label>
-              <select class="form-control" id="weld-geometry">
-                <option>E91T1-B3L</option>
-                <option>...</option>
+              <select v-model="type in material_data.filler_material.selected" class="form-control" id="weld-geometry">
+                <option v-for="type in material_data.filler_material_types" v-bind="type">
+                  {{ type }}
+                </option>
               </select>
             </div>
           </div>
