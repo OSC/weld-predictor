@@ -159,7 +159,7 @@
             <div class="form-group">
               <label for="weld-geometry">Part 1 - Base Metal:</label>
               <select v-model="material_data.base_material1.selected" class="form-control" id="weld-geometry">
-                <option v-for="type in material_data.base_material_types" v-bind="type">
+                <option v-for="type in material_data.base_material_types" v-bind:value="type">
                   {{ type }}
                 </option>
               </select>
@@ -167,15 +167,15 @@
             <div class="form-group">
               <label for="weld-geometry">Part 2 - Base Metal:</label>
               <select v-model="material_data.base_material2.selected" class="form-control" id="weld-geometry">
-                <option v-for="type in material_data.base_material_types" v-bind="type">
+                <option v-for="type in material_data.base_material_types" v-bind:value="type">
                   {{ type }}
                 </option>
               </select>
             </div>
             <div class="form-group">
               <label for="weld-geometry">Filler Wire:</label>
-              <select v-model="type in material_data.filler_material.selected" class="form-control" id="weld-geometry">
-                <option v-for="type in material_data.filler_material_types" v-bind="type">
+              <select v-model="material_data.filler_material.selected" class="form-control" id="weld-geometry">
+                <option v-for="type in material_data.filler_material_types" v-bind:value="type">
                   {{ type }}
                 </option>
               </select>
