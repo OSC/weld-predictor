@@ -91,11 +91,13 @@
         </div>
         <div id="collapse-bead-definition" class="panel-collapse collapse">
           <div class="panel-body">
-            <select class="form-control" id="bead-definition-select">
-              <option>Parabolic</option>
-              <option>Elliptical</option>
-              <option>Custom</option>
+            <select v-model="bead_data.selected" class="form-control" id="bead-definition-select">
+              <option v-for="bead_type in bead_data.bead_types" v-bind:value="bead_type.value">
+                {{ bead_type.title }}
+              </option>
             </select>
+
+
             <canvas id="bead_canvas_0"></canvas>
             <div class="col-md-12">
               <div class="form-group row">
@@ -156,14 +158,10 @@
           <div class="panel-body">
             <div class="form-group">
               <label for="weld-geometry">Part 1 - Base Metal:</label>
-              <select class="form-control" id="weld-geometry">
-                <option>A572</option>
-                <option>AH36</option>
-                <option>AISI-1018</option>
-                <option>AISI-4140</option>
-                <option>AISI-8620</option>
-                <option>ASTM2.25Cr-1.0Mo</option>
-                <option>...</option>
+              <select v-model="material_data.base_material1.selected" class="form-control" id="weld-geometry">
+                <option v-for="type in material_data.base_material_types" v-bind="type">
+                  {{ type }}
+                </option>
               </select>
             </div>
             <div class="form-group">
