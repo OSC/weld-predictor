@@ -84,6 +84,8 @@ $(document).ready(function () {
                         dimensions: {
                             x: 0.0,
                             y: 0.35,
+                            z1: 0.0,
+                            z2: 4.0,
                             w: 0.3,
                             a: 0.0,
                             b: 0.1,
@@ -92,21 +94,53 @@ $(document).ready(function () {
                             r: 0.0
                         }
                     },
-                    {value: 'elliptical', title: 'Elliptical'},
-                    {value: 'custom', title: 'Custom'}
+                    {
+                        value: 'elliptical', title: 'Elliptical',
+                        dimensions: {
+                            x: 0.0,
+                            y: 0.35,
+                            z1: 0.0,
+                            z2: 4.0,
+                            w: 0.3,
+                            h: 0.0,
+                            r: 0.0
+                        }
+                    },
+                    {
+                        value: 'points', title: 'Complex Shape',
+                        dimensions: {
+                            x: 0.0,
+                            y: 0.35,
+                            z1: 0.0,
+                            z2: 4.0,
+                            w: 0.3,
+                            points: [0.45,0.66,0.39,0.6,0.32,0.56,0.24,0.52,0.18,0.5,0.11,0.48,0.06,0.4,0,0.34,-0.07,0.28,-0.13,0.27,-0.2,0.27,-0.29,0.3,-0.36,0.37,-0.41,0.44,-0.43,0.5,-0.47,0.54,-0.56,0.58,-0.66,0.63,-0.7,0.71,-0.64,0.73,-0.54,0.76,-0.43,0.77,-0.35,0.78,-0.24,0.8,-0.18,0.81,-0.08,0.8,0.05,0.79,0.17,0.76,0.3,0.72,0.37,0.7,0.45,0.66],
+                            r: 0.0
+                        }
+                    }
                 ],
+                selected: 'parabolic',
                 beads: {}
             },
             material_data: {
                 base_material1: {
-                    type: 'HSLA-100'
+                    selected: 'X65'
                 },
                 base_material2: {
-                    type: 'X65'
+                    selected: 'X65'
                 },
                 filler_material: {
-                    type: 'MIL-100S-1'
-                }
+                    selected: 'MIL-100S-1'
+                },
+                base_material_types: [
+                    'A572', 'AH36', 'AISI-1018', 'AISI-4140', 'AISI-8620', 'Alloy-625', 'Aluminum-4043', 'Aluminum-6061', 'ASTM2.25Cr-1.0Mo', 'ASTM516Grade60', 'ASTM516Grade70', 'ASTM_P91_9Cr-1Mo-V-Nb', 'DH36', 'DP600', 'DP780', 'HSLA-65', 'HSLA-80', 'HSLA', 'HY-100', 'HY-80', 'Inconel-600', 'Inconel-625', 'M190', 'Mild', 'Stainless-304', 'Ti-6Al-4V', 'Titanium_CP', 'X65'
+                ],
+                friction_stir_material_types: [
+                    'AA7075', 'AZ31B'
+                ],
+                filler_material_types: [
+                    'E11018', 'E308-T1-X', 'E308L-16', 'E7018', 'E71T-1', 'E71T8-K6', 'E8010-P1', 'E8018-G', 'E8018B3L', 'E91T1-B3L', 'ER120S-1', 'ER308L', 'ER70S-3', 'ER70S-6', 'ER80S-D2', 'ER90S-B9', 'ERTi-2', 'ERTi-5', 'F7A2-EM12K', 'F9P0-EB3-B3', 'HSLA-100', 'MIL-100S-1'
+                ]
             },
             procedure_data: {
                 pre_heat_temp_F: 70,
