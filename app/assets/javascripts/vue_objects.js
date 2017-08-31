@@ -63,11 +63,6 @@ $(document).ready(function () {
                     {value: 't_bevel', title: 'T-Bevel'}
                 ],
                 selected: 'bead_on_plate',
-                backing_bar: {
-                    present: 'false',
-                    height: 0.5,
-                    width: 4.0
-                },
                 root_gap: {
                     present: 'false',
                     range: 0.04
@@ -120,7 +115,8 @@ $(document).ready(function () {
                     }
                 ],
                 selected: 'parabolic',
-                beads: {}
+                beads: {},
+                num_beads: 0
             },
             material_data: {
                 base_material1: {
