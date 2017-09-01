@@ -66,6 +66,13 @@
               </select>
               <div v-if="dimension_data.selected === 'plate'">
                 <%= image_tag('plate.png', :style => "max-width: 100%") %>
+                <div class="form-group row">
+                  <label class="col-md-4 control-label">Width (W1)</label>
+                  <div class="col-md-6">
+                    <input type="number" class="form-control">
+                  </div>
+                  <label class="col-md-2 control-label">in.</label>
+                </div>
               </div>
               <div v-if="dimension_data.selected === 't_plate'">
                 <%= image_tag('t-plate-dim.png', :style => "max-width: 100%") %>
