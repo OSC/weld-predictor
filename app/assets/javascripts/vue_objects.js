@@ -42,9 +42,37 @@ $(document).ready(function () {
                             'v_groove'
                         ]
                     },
-                    {value: 't_plate', title: 'T-Plate'},
-                    {value: 'pipe', title: 'Pipe'},
-                    {value: 't_pipe', title: 'T-Pipe'},
+                    {
+                        value: 't_plate', title: 'T-Plate',
+                        dimensions: {
+                            thickness_t1: 0.5,
+                            thickness_t2: 0.5,
+                            width_w1: 6,
+                            width_w2: 6,
+                            length_l: 20,
+                            height_h: 4
+                        }
+                    },
+                    {
+                        value: 'pipe', title: 'Pipe',
+                        dimensions: {
+                            outer_diameter: 36,
+                            wall_thickness: 1,
+                            length_w1: 16,
+                            length_w2: 16
+                        }
+                    },
+                    {
+                        value: 't_pipe', title: 'T-Pipe',
+                        dimensions: {
+                            outer_diameter: 36,
+                            wall_thicknes_t1: 0.5,
+                            flange_thickness_t2: 0.5,
+                            length_w1: 6,
+                            length_w2: 6,
+                            flange_height_h: 2
+                        }
+                    },
                     {value: 'lap_joint', title: 'Lap Joint'}
                 ],
                 selected: 'plate'
