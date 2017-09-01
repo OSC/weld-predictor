@@ -91,6 +91,9 @@
         </div>
         <div id="collapse-bead-definition" class="panel-collapse collapse">
           <div class="panel-body">
+            <label>Number of Beads</label>
+            <input type="number" v-model="bead_data.num_beads" class="form-control" >
+            <!--
             <select v-model="bead_data.selected" class="form-control" id="bead-definition-select">
               <option v-for="bead_type in bead_data.bead_types" v-bind:value="bead_type.value">
                 {{ bead_type.title }}
@@ -147,6 +150,7 @@
                 </div>
               </div>
             </div>
+            -->
           </div>
         </div>
       </div>
@@ -189,7 +193,19 @@
         </div>
         <div id="collapse-procedure" class="panel-collapse collapse">
           <div class="panel-body">
-            TODO
+            <div v-for="(pass, key) in procedure_data.weld_passes">
+              <div class="panel panel-default">
+                <div class="panel-heading">Weld Pass {{ key + 1 }}</div>
+                <div class="panel-body">
+                  <label>Current (A)</label>
+                  <input v-model="pass.current_A" class="form-control" />
+                  <label>Voltage (V)</label>
+                  <input v-model="pass.voltage_V" class="form-control" />
+                  <label>TS (ipm)</label>
+                  <input v-model="pass.travel_ipm" class="form-control" />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
