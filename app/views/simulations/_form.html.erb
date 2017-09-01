@@ -64,6 +64,21 @@
                   {{ fixture_shape.title }}
                 </option>
               </select>
+              <div v-if="dimension_data.selected === 'plate'">
+                <%= image_tag('plate.png', :style => "max-width: 100%") %>
+              </div>
+              <div v-if="dimension_data.selected === 't_plate'">
+                <%= image_tag('t-plate-dim.png', :style => "max-width: 100%") %>
+              </div>
+              <div v-if="dimension_data.selected === 'pipe'">
+                <%= image_tag('pipe-dim.png', :style => "max-width: 100%") %>
+              </div>
+              <div v-if="dimension_data.selected === 't_pipe'">
+                <%= image_tag('t-pipe-dim.png', :style => "max-width: 100%") %>
+              </div>
+              <div v-if="dimension_data.selected === 'lap_joint'">
+                TODO IMAGE
+              </div>
             </div>
           </div>
         </div>
