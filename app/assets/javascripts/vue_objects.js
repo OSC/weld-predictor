@@ -189,6 +189,15 @@ $(document).ready(function () {
                 coolers: [],
                 monitors: []
             }
+        }, methods: {
+            saveSimulation: function() {
+                // Create a new Simulation
+                if (this.id == null) {
+                    this.$http.post(APP_ROOT + '/simulations', { simulation_data: vm.$root.$data }).then(response => {
+                        window.location('/');
+                    })
+                }
+            }
         }
     });
 
