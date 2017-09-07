@@ -225,6 +225,15 @@ $(document).ready(function () {
 
     if (simulation_id != null) {
         console.log("Loading simulation from server");
+        axios.get(Routes.simulation_path(simulation_id, {format: 'json'}))
+            .then(function (response) {
+                // TODO Handle response
+                console.log(response);
+            })
+            .catch(function (error) {
+                // TODO Handle error
+                console.log(error);
+            })
     };
 
     render_three_shape();
