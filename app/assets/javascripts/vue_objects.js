@@ -1,6 +1,7 @@
 var vm;
 
 $(document).ready(function () {
+    axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
 
     vm = new Vue({
         el: '#vue-app',
@@ -191,53 +192,46 @@ $(document).ready(function () {
             }
         }, methods: {
             saveSimulation: function() {
-                // Create a new Simulation
-                if (this.id == null) {
-                    this.$http.post(APP_ROOT + '/simulations', { simulation_data: vm.$root.$data }).then(response => {
-                        window.location('/');
-                    })
+                if (simulation_id == null) {
+                    // Create a new Simulation
+                    //this.$http.post(Routes.simulations_path(), { simulation_data: vm.$root.$data }).then(response => {
+                    //    window.location(Routes.root_path());
+                    //})
+                    axios.post(Routes.simulations_path({format: 'json'}), { simulation_data: vm.$root.$data, authenticity_token: AUTH_TOKEN })
+                        .then(function (response) {
+                            console.log(response);
+                            this.window.location.href = Routes.root_path();
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                            // TODO: Inform the user of failure
+                        })
+                }
+                else {
+                    // Update an existing simulation
+                    axios.put(Routes.simulation_path(simulation_id, {format: 'json'}), { simulation_data: vm.$root.$data, authenticity_token: AUTH_TOKEN })
+                        .then(function (response) {
+                            console.log(response);
+                            this.window.location.href = Routes.root_path();
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                            // TODO: Inform the user of failure
+                        })
                 }
             }
         }
     });
 
+    if (simulation_id != null) {
+        console.log("Loading simulation from server");
+    };
+
     render_three_shape();
 
     $('#form-submit-button').on('click', function () {
-
-            console.log(vm.$root.$data);
-            post(Routes.simulations_path(), {simulation_data: vm.$root.$data });
+            vm.saveSimulation();
         }
     );
 
 });
-
-function post(path, params, method) {
-    method = method || "post"; // Set method to post by default if not specified.
-
-    // The rest of this code assumes you are not using a library.
-    // It can be made less wordy if you use one.
-    var form = document.createElement("form");
-    form.setAttribute("method", method);
-    form.setAttribute("action", path);
-
-    for(var key in params) {
-        if(params.hasOwnProperty(key)) {
-            var hiddenField = document.createElement("input");
-            hiddenField.setAttribute("type", "hidden");
-            hiddenField.setAttribute("name", key);
-            hiddenField.setAttribute("value", JSON.stringify(params[key]));
-
-            form.appendChild(hiddenField);
-        }
-    }
-
-    var hiddenField = document.createElement("input");
-    hiddenField.setAttribute("type", "hidden");
-    hiddenField.setAttribute("name", "authenticity_token");
-    hiddenField.setAttribute("value", AUTH_TOKEN);
-    form.appendChild(hiddenField);
-
-    document.body.appendChild(form);
-    form.submit();
-}

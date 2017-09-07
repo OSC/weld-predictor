@@ -19,7 +19,7 @@
 //= require three.js-r86/examples/js/controls/TrackballControls
 //= require three.js-r86/examples/js/controls/OrthographicTrackballControls
 //= require vuejs-2.4.0/vue
-//= require axios-0.16.2/axios
+//= require axios-0.16.2/axios.min
 //= require paper.js-0.11.4/dist/paper-full
 //= require js-routes
 //= require_tree .
