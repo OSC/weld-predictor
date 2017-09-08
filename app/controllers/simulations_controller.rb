@@ -25,7 +25,7 @@ class SimulationsController < ApplicationController
   # POST /simulations.json
   def create
     @simulation = Simulation.new
-    @simulation.data = simulation_params
+    @simulation.job_cache = simulation_params
 
     respond_to do |format|
       if @simulation.save
