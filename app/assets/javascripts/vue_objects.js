@@ -245,6 +245,11 @@ $(document).ready(function () {
 
 });
 
+// Used to assign data to the vue object particularily from an initial load.
+//   Vue disallows setting $root.$data directly, so we need to add it piecemeal.
+//
+// @param { Object } vue_instance An instance of a vue object
+// @param { Object } jobcache A json object corresponding to the desired data state
 function setInitialVueState(vue_instance, jobcache) {
     vue_instance.$data.start_panel_data = jobcache.start_panel_data;
     vue_instance.$data.technique_data = jobcache.technique_data;
