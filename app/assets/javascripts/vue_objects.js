@@ -194,9 +194,7 @@ $(document).ready(function () {
             saveSimulation: function() {
                 if (simulation_id == null) {
                     // Create a new Simulation
-                    //this.$http.post(Routes.simulations_path(), { simulation_data: vm.$root.$data }).then(response => {
-                    //    window.location(Routes.root_path());
-                    //})
+                    // TODO Add a "processing" notice for the user
                     axios.post(Routes.simulations_path({format: 'json'}), { simulation_data: vm.$root.$data, authenticity_token: AUTH_TOKEN })
                         .then(function (response) {
                             console.log(response);
@@ -209,6 +207,7 @@ $(document).ready(function () {
                 }
                 else {
                     // Update an existing simulation
+                    // TODO Add a "processing" notice for the user
                     axios.put(Routes.simulation_path(simulation_id, {format: 'json'}), { simulation_data: vm.$root.$data, authenticity_token: AUTH_TOKEN })
                         .then(function (response) {
                             console.log(response);
@@ -225,10 +224,11 @@ $(document).ready(function () {
 
     if (simulation_id != null) {
         console.log("Loading simulation from server");
+        // TODO Add a "processing" notice for the user
         axios.get(Routes.simulation_path(simulation_id, {format: 'json'}))
             .then(function (response) {
-                // TODO Handle response
                 console.log(response);
+                setInitialVueState(vm, response.data.job_cache)
             })
             .catch(function (error) {
                 // TODO Handle error
@@ -244,3 +244,14 @@ $(document).ready(function () {
     );
 
 });
+
+function setInitialVueState(vue_instance, jobcache) {
+    vue_instance.$data.start_panel_data = jobcache.start_panel_data;
+    vue_instance.$data.technique_data = jobcache.technique_data;
+    vue_instance.$data.procedure_data = jobcache.procedure_data;
+    vue_instance.$data.material_data = jobcache.material_data;
+    vue_instance.$data.joint_data = jobcache.joint_data;
+    vue_instance.$data.fixture_data = jobcache.fixture_data;
+    vue_instance.$data.dimension_data = jobcache.dimension_data;
+    vue_instance.$data.bead_data = jobcache.bead_data;
+}
