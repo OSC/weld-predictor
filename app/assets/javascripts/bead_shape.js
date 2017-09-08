@@ -1,6 +1,7 @@
 window.onload = function() {
     //debugger;
 
+    /*
     var elementId = 'bead_canvas_0';
 
     // Get a reference to the canvas object
@@ -61,6 +62,7 @@ window.onload = function() {
     path.fillColor = '#42b9f4';
     // Draw the view now:
     paper.view.draw();
+    */
 };
 
 function pixelsToInches(pixels) {
