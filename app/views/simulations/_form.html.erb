@@ -1,4 +1,5 @@
 <%# Uses rails_bootstrap_form gem. API at: https://github.com/bootstrap-ruby/rails-bootstrap-forms %>
+<%= javascript_include_tag params[:vue_objects] %>
 
 <% if false %>
   <%= bootstrap_form_for(simulation) do |f| %>

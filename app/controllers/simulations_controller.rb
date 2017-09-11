@@ -25,7 +25,7 @@ class SimulationsController < ApplicationController
   # POST /simulations.json
   def create
     @simulation = Simulation.new
-    @simulation.job_cache = simulation_params
+    @simulation.data = simulation_params
 
     respond_to do |format|
       if @simulation.save
@@ -42,7 +42,7 @@ class SimulationsController < ApplicationController
   # PATCH/PUT /simulations/1.json
   def update
     respond_to do |format|
-      if @simulation.update(job_cache: simulation_params)
+      if @simulation.update(data: simulation_params)
         format.html { redirect_to @simulation, notice: 'Simulation was successfully updated.' }
         format.json { render :show, status: :ok, location: @simulation }
       else
