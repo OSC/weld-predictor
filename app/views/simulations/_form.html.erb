@@ -211,21 +211,37 @@
         </div>
       </div>
       <div class="panel panel-default">
-        <div class="panel-heading"  data-toggle="collapse" data-parent="#accordion" data-target="#collapse-procedure">
+        <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" data-target="#collapse-weld-procedure">
           <h4 class="panel-title">Weld Procedure</h4>
         </div>
-        <div id="collapse-procedure" class="panel-collapse collapse">
+        <div id="collapse-weld-procedure" class="panel-collapse collapse">
           <div class="panel-body">
+            <div class="form-group">
+              <label for="pre-heat-temp-f">Pre-Heat Temp F:</label>
+              <input v-model.number="procedure_data.pre_heat_temp_F" class="form-control" id="pre-heat-temp-f" type="number" min="1" />
+            </div>
+            <div class="form-group">
+              <label for="pre-heat-temp-c">Pre-Heat Temp C:</label>
+              <input v-model.number="procedure_data.pre_heat_temp_C" class="form-control" id="pre-heat-temp-c" type="number" min="1" />
+            </div>
+            <div class="form-group">
+              <label for="inter-pass-temp-f">Inter-Pass Temp F:</label>
+              <input v-model.number="procedure_data.inter_pass_temp_F" class="form-control" id="inter-pass-temp-f" type="number" min="1" />
+            </div>
+            <div class="form-group">
+              <label for="inter-pass-temp-c">Inter-Pass Temp C:</label>
+              <input v-model.number="procedure_data.inter_pass_temp_C" class="form-control" id="inter-pass-temp-c" type="number" min="1" />
+            </div>
             <div v-for="(pass, key) in procedure_data.weld_passes">
               <div class="panel panel-default">
                 <div class="panel-heading">Weld Pass {{ key + 1 }}</div>
                 <div class="panel-body">
                   <label>Current (A)</label>
-                  <input v-model="pass.current_A" class="form-control" />
+                  <input v-model.number="pass.current_A" class="form-control" type="number" />
                   <label>Voltage (V)</label>
-                  <input v-model="pass.voltage_V" class="form-control" />
+                  <input v-model.number="pass.voltage_V" class="form-control" type="number" />
                   <label>TS (ipm)</label>
-                  <input v-model="pass.travel_ipm" class="form-control" />
+                  <input v-model.number="pass.travel_ipm" class="form-control" type="number" />
                 </div>
               </div>
             </div>
