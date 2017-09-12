@@ -100,8 +100,8 @@
             <div class="form-group">
               <label for="joint-design">Joint Design:</label>
               <select v-model="joint_data.selected" class="form-control" id="joint-design">
-                <option v-for="joint_design in joint_data.joint_designs" v-bind:value="joint_design.value">
-                  {{ joint_design.title }}
+                <option v-for="joint_design in dimension_data.fixture_shapes.find(shape => shape.value === dimension_data.selected).joint_designs" v-bind:value="joint_design" >
+                  {{ joint_data.joint_designs.find(d => d.value === joint_design).title }}
                 </option>
               </select>
             </div>
