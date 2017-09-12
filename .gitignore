@@ -30,3 +30,7 @@
 
 # Do not version the dependencies
 /vendor/bundle
+
+# Ignore all CalculiX build files
+/lib/calculix/**/*.o
+/lib/calculix/**/*.a
