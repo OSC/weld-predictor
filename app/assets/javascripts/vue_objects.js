@@ -52,7 +52,10 @@ $(document).ready(function () {
                             width_w2: 6,
                             length_l: 20,
                             height_h: 4
-                        }
+                        },
+                        joint_designs: [
+                            't_bevel'
+                        ]
                     },
                     {
                         value: 'pipe', title: 'Pipe',
@@ -61,7 +64,15 @@ $(document).ready(function () {
                             wall_thickness: 1,
                             length_w1: 16,
                             length_w2: 16
-                        }
+                        },
+                        joint_designs: [
+                            'bead_on_plate',
+                            'bevel_groove',
+                            'compound_bevel',
+                            'j_groove',
+                            'u_groove',
+                            'v_groove'
+                        ]
                     },
                     {
                         value: 't_pipe', title: 'T-Pipe',
@@ -72,9 +83,14 @@ $(document).ready(function () {
                             length_w1: 6,
                             length_w2: 6,
                             flange_height_h: 2
-                        }
+                        },
+                        joint_designs: [
+                            't_bevel'
+                        ]
                     },
-                    {value: 'lap_joint', title: 'Lap Joint'}
+                    {
+                        value: 'lap_joint', title: 'Lap Joint'
+                    }
                 ],
                 selected: 'plate'
             },
