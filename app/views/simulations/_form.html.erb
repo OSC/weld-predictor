@@ -70,22 +70,155 @@
                 <div class="form-group row">
                   <label class="col-md-4 control-label">Width (W1)</label>
                   <div class="col-md-6">
-                    <input type="number" class="form-control">
+                    <input type="number" class="form-control" v-model="dimension_data.fixture_shapes.find(shape => shape.value === 'plate').dimensions.width_w1">
+                  </div>
+                  <label class="col-md-2 control-label">in.</label>
+                </div>
+                <div class="form-group row">
+                  <label class="col-md-4 control-label">Width (W2)</label>
+                  <div class="col-md-6">
+                    <input type="number" class="form-control" v-model="dimension_data.fixture_shapes.find(shape => shape.value === 'plate').dimensions.width_w2">
+                  </div>
+                  <label class="col-md-2 control-label">in.</label>
+                </div>
+                <div class="form-group row">
+                  <label class="col-md-4 control-label">Thickness</label>
+                  <div class="col-md-6">
+                    <input type="number" class="form-control" v-model="dimension_data.fixture_shapes.find(shape => shape.value === 'plate').dimensions.thickness">
+                  </div>
+                  <label class="col-md-2 control-label">in.</label>
+                </div>
+                <div class="form-group row">
+                  <label class="col-md-4 control-label">Length</label>
+                  <div class="col-md-6">
+                    <input type="number" class="form-control" v-model="dimension_data.fixture_shapes.find(shape => shape.value === 'plate').dimensions.length">
                   </div>
                   <label class="col-md-2 control-label">in.</label>
                 </div>
               </div>
               <div v-if="dimension_data.selected === 't_plate'">
                 <%= image_tag(image_path('t-plate-dim.png'), :style => "max-width: 100%") %>
+                <div class="form-group row">
+                  <label class="col-md-4 control-label">Thickness (T1)</label>
+                  <div class="col-md-6">
+                    <input type="number" class="form-control" v-model="dimension_data.fixture_shapes.find(shape => shape.value === 't_plate').dimensions.thickness_t1">
+                  </div>
+                  <label class="col-md-2 control-label">in.</label>
+                </div>
+                <div class="form-group row">
+                  <label class="col-md-4 control-label">Thickness (T2)</label>
+                  <div class="col-md-6">
+                    <input type="number" class="form-control" v-model="dimension_data.fixture_shapes.find(shape => shape.value === 't_plate').dimensions.thickness_t2">
+                  </div>
+                  <label class="col-md-2 control-label">in.</label>
+                </div>
+                <div class="form-group row">
+                  <label class="col-md-4 control-label">Width (W1)</label>
+                  <div class="col-md-6">
+                    <input type="number" class="form-control" v-model="dimension_data.fixture_shapes.find(shape => shape.value === 't_plate').dimensions.width_w1">
+                  </div>
+                  <label class="col-md-2 control-label">in.</label>
+                </div>
+                <div class="form-group row">
+                  <label class="col-md-4 control-label">Width (W2)</label>
+                  <div class="col-md-6">
+                    <input type="number" class="form-control" v-model="dimension_data.fixture_shapes.find(shape => shape.value === 't_plate').dimensions.width_w2">
+                  </div>
+                  <label class="col-md-2 control-label">in.</label>
+                </div>
+                <div class="form-group row">
+                  <label class="col-md-4 control-label">Length</label>
+                  <div class="col-md-6">
+                    <input type="number" class="form-control" v-model="dimension_data.fixture_shapes.find(shape => shape.value === 't_plate').dimensions.length_l">
+                  </div>
+                  <label class="col-md-2 control-label">in.</label>
+                </div>
+                <div class="form-group row">
+                  <label class="col-md-4 control-label">Height</label>
+                  <div class="col-md-6">
+                    <input type="number" class="form-control" v-model="dimension_data.fixture_shapes.find(shape => shape.value === 't_plate').dimensions.height_h">
+                  </div>
+                  <label class="col-md-2 control-label">in.</label>
+                </div>
               </div>
               <div v-if="dimension_data.selected === 'pipe'">
                 <%= image_tag(image_path('pipe-dim.png'), :style => "max-width: 100%") %>
+                <div class="form-group row">
+                  <label class="col-md-4 control-label">Outer Diameter</label>
+                  <div class="col-md-6">
+                    <input type="number" class="form-control" v-model="dimension_data.fixture_shapes.find(shape => shape.value === 'pipe').dimensions.outer_diameter">
+                  </div>
+                  <label class="col-md-2 control-label">in.</label>
+                </div>
+                <div class="form-group row">
+                  <label class="col-md-4 control-label">Wall Thickness</label>
+                  <div class="col-md-6">
+                    <input type="number" class="form-control" v-model="dimension_data.fixture_shapes.find(shape => shape.value === 'pipe').dimensions.wall_thickness">
+                  </div>
+                  <label class="col-md-2 control-label">in.</label>
+                </div>
+                <div class="form-group row">
+                  <label class="col-md-4 control-label">Length (W1)</label>
+                  <div class="col-md-6">
+                    <input type="number" class="form-control" v-model="dimension_data.fixture_shapes.find(shape => shape.value === 'pipe').dimensions.length_w1">
+                  </div>
+                  <label class="col-md-2 control-label">in.</label>
+                </div>
+                <div class="form-group row">
+                  <label class="col-md-4 control-label">Length (W2)</label>
+                  <div class="col-md-6">
+                    <input type="number" class="form-control" v-model="dimension_data.fixture_shapes.find(shape => shape.value === 'pipe').dimensions.length_w2">
+                  </div>
+                  <label class="col-md-2 control-label">in.</label>
+                </div>
               </div>
               <div v-if="dimension_data.selected === 't_pipe'">
                 <%= image_tag(image_path('t-pipe-dim.png'), :style => "max-width: 100%") %>
+                <div class="form-group row">
+                  <label class="col-md-4 control-label">Outer Diameter</label>
+                  <div class="col-md-6">
+                    <input type="number" class="form-control" v-model="dimension_data.fixture_shapes.find(shape => shape.value === 't_pipe').dimensions.outer_diameter">
+                  </div>
+                  <label class="col-md-2 control-label">in.</label>
+                </div>
+                <div class="form-group row">
+                  <label class="col-md-4 control-label">Wall Thickness (T1)</label>
+                  <div class="col-md-6">
+                    <input type="number" class="form-control" v-model="dimension_data.fixture_shapes.find(shape => shape.value === 't_pipe').dimensions.wall_thickness_t1">
+                  </div>
+                  <label class="col-md-2 control-label">in.</label>
+                </div>
+                <div class="form-group row">
+                  <label class="col-md-4 control-label">Flange Thickness (T2)</label>
+                  <div class="col-md-6">
+                    <input type="number" class="form-control" v-model="dimension_data.fixture_shapes.find(shape => shape.value === 't_pipe').dimensions.outer_diameter">
+                  </div>
+                  <label class="col-md-2 control-label">in.</label>
+                </div>
+                <div class="form-group row">
+                  <label class="col-md-4 control-label">Length (W1)</label>
+                  <div class="col-md-6">
+                    <input type="number" class="form-control" v-model="dimension_data.fixture_shapes.find(shape => shape.value === 't_pipe').dimensions.length_w1">
+                  </div>
+                  <label class="col-md-2 control-label">in.</label>
+                </div>
+                <div class="form-group row">
+                  <label class="col-md-4 control-label">Length (W2)</label>
+                  <div class="col-md-6">
+                    <input type="number" class="form-control" v-model="dimension_data.fixture_shapes.find(shape => shape.value === 't_pipe').dimensions.length_w2">
+                  </div>
+                  <label class="col-md-2 control-label">in.</label>
+                </div>
+                <div class="form-group row">
+                  <label class="col-md-4 control-label">Flange Height (H)</label>
+                  <div class="col-md-6">
+                    <input type="number" class="form-control" v-model="dimension_data.fixture_shapes.find(shape => shape.value === 't_pipe').dimensions.flange_height_h">
+                  </div>
+                  <label class="col-md-2 control-label">in.</label>
+                </div>
               </div>
               <div v-if="dimension_data.selected === 'lap_joint'">
-                TODO IMAGE
+                TODO
               </div>
             </div>
           </div>
