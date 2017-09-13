@@ -42,7 +42,7 @@ function render_three_shape() {
         var width = 300;
         var height = 10;
         var depth = 250;
-        var material = new THREE.MeshLambertMaterial({color: '#a8b2c1', map: new THREE.TextureLoader().load( "<%= asset_path '/assets/three.js-r86/examples/textures/square-outline.png' %>" )});
+        var material = new THREE.MeshLambertMaterial({color: '#a8b2c1', map: new THREE.TextureLoader().load( "<%= asset_path 'square-outline.png' %>" )});
         var cube = new THREE.CubeGeometry(width, height, depth);
         cube = new THREE.Mesh( cube, material );
         cube.position.set(width * 0.25, -(height * 0.5), 0);
