@@ -98,14 +98,35 @@ $(document).ready(function () {
                 joint_designs: [
                     {
                         value: 'bead_on_plate', title: 'Bead-on-Plate',
-                        dimensions: {}
+                        img: 'bead_on_plate_design.png',
+                        dimensions: {
+                            // no joint dimensions for bead on plate
+                        }
                     },
-                    {value: 'bevel_groove', title: 'Bevel-Groove'},
-                    {value: 'compound_bevel', title: 'Compund Bevel'},
-                    {value: 'j_groove', title: 'J-Groove'},
-                    {value: 'u_groove', title: 'U-Groove'},
-                    {value: 'v_groove', title: 'V-Groove'},
-                    {value: 't_bevel', title: 'T-Bevel'}
+                    {
+                        value: 'bevel_groove', title: 'Bevel-Groove',
+                        img: 'bevel_groove_design.png'
+                    },
+                    {
+                        value: 'compound_bevel', title: 'Compund Bevel',
+                        img: 'cb_design.png'
+                    },
+                    {
+                        value: 'j_groove', title: 'J-Groove',
+                        img: 'j-design.png'
+                    },
+                    {
+                        value: 'u_groove', title: 'U-Groove',
+                        img: 'u_design.png'
+                    },
+                    {
+                        value: 'v_groove', title: 'V-Groove',
+                        img: 'v_design.png'
+                    },
+                    {
+                        value: 't_bevel', title: 'T-Bevel',
+                        img: 't_joint_design.png'
+                    }
                 ],
                 selected: 'bead_on_plate',
                 root_gap: {
