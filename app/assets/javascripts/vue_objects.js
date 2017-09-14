@@ -243,7 +243,7 @@ $(document).ready(function () {
         // TODO Add a "processing" notice for the user
         axios.get(Routes.simulation_path(simulation_id, {format: 'json'}))
             .then(function (response) {
-                console.log(response);
+                //console.log(response);
                 setInitialVueState(vm, response.data.job_cache)
             })
             .catch(function (error) {
@@ -267,12 +267,12 @@ $(document).ready(function () {
 // @param { Object } vue_instance An instance of a vue object
 // @param { Object } jobcache A json object corresponding to the desired data state
 function setInitialVueState(vue_instance, jobcache) {
-    vue_instance.$data.start_panel_data = jobcache.start_panel_data;
-    vue_instance.$data.technique_data = jobcache.technique_data;
-    vue_instance.$data.procedure_data = jobcache.procedure_data;
-    vue_instance.$data.material_data = jobcache.material_data;
-    vue_instance.$data.joint_data = jobcache.joint_data;
-    vue_instance.$data.fixture_data = jobcache.fixture_data;
-    vue_instance.$data.dimension_data = jobcache.dimension_data;
-    vue_instance.$data.bead_data = jobcache.bead_data;
+    vue_instance.$data.start_panel_data = jobcache.data.start_panel_data;
+    vue_instance.$data.technique_data = jobcache.data.technique_data;
+    vue_instance.$data.procedure_data = jobcache.data.procedure_data;
+    vue_instance.$data.material_data = jobcache.data.material_data;
+    vue_instance.$data.joint_data = jobcache.data.joint_data;
+    vue_instance.$data.fixture_data = jobcache.data.fixture_data;
+    vue_instance.$data.dimension_data = jobcache.data.dimension_data;
+    vue_instance.$data.bead_data = jobcache.data.bead_data;
 }
