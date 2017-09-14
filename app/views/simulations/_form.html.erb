@@ -248,7 +248,7 @@
         <div id="collapse-bead-definition" class="panel-collapse collapse">
           <div class="panel-body">
             <label>Number of Beads</label>
-            <input type="number" v-model.number="bead_data.num_beads" class="form-control" >
+            <input type="number" v-model.number="bead_data.num_beads" class="form-control" min="1">
             <!--
             <select v-model="bead_data.selected" class="form-control" id="bead-definition-select">
               <option v-for="bead_type in bead_data.bead_types" v-bind:value="bead_type.value">
