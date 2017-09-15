@@ -242,21 +242,161 @@
               </div>
               <div v-if="joint_data.selected === 'bevel_groove'">
                 <%= image_tag(image_path('bevel_groove_design.png'), :style => "max-width: 100%") %>
+                <div class="form-group row">
+                  <label class="col-md-4 control-label">a</label>
+                  <div class="col-md-6">
+                    <input type="number" class="form-control" v-model="joint_data.dimensions.a">
+                  </div>
+                  <label class="col-md-2 control-label">in.</label>
+                </div>
+                <div class="form-group row">
+                  <label class="col-md-4 control-label">β</label>
+                  <div class="col-md-6">
+                    <input type="number" class="form-control" v-model="joint_data.dimensions.beta">
+                  </div>
+                  <label class="col-md-2 control-label">deg.</label>
+                </div>
               </div>
               <div v-if="joint_data.selected === 'compound_bevel'">
                 <%= image_tag(image_path('cb_design.png'), :style => "max-width: 100%") %>
+                <div class="form-group row">
+                  <label class="col-md-4 control-label">a</label>
+                  <div class="col-md-6">
+                    <input type="number" class="form-control" v-model="joint_data.dimensions.a">
+                  </div>
+                  <label class="col-md-2 control-label">in.</label>
+                </div>
+                <div class="form-group row">
+                  <label class="col-md-4 control-label">b</label>
+                  <div class="col-md-6">
+                    <input type="number" class="form-control" v-model="joint_data.dimensions.b">
+                  </div>
+                  <label class="col-md-2 control-label">in.</label>
+                </div>
+                <div class="form-group row">
+                  <label class="col-md-4 control-label">α</label>
+                  <div class="col-md-6">
+                    <input type="number" class="form-control" v-model="joint_data.dimensions.alpha">
+                  </div>
+                  <label class="col-md-2 control-label">deg.</label>
+                </div>
+                <div class="form-group row">
+                  <label class="col-md-4 control-label">β</label>
+                  <div class="col-md-6">
+                    <input type="number" class="form-control" v-model="joint_data.dimensions.beta">
+                  </div>
+                  <label class="col-md-2 control-label">deg.</label>
+                </div>
               </div>
               <div v-if="joint_data.selected === 'j_groove'">
                 <%= image_tag(image_path('j_design.png'), :style => "max-width: 100%") %>
+                <div class="form-group row">
+                  <label class="col-md-4 control-label">a</label>
+                  <div class="col-md-6">
+                    <input type="number" class="form-control" v-model="joint_data.dimensions.a">
+                  </div>
+                  <label class="col-md-2 control-label">in.</label>
+                </div>
+                <div class="form-group row">
+                  <label class="col-md-4 control-label">b</label>
+                  <div class="col-md-6">
+                    <input type="number" class="form-control" v-model="joint_data.dimensions.b">
+                  </div>
+                  <label class="col-md-2 control-label">in.</label>
+                </div>
+                <div class="form-group row">
+                <label class="col-md-4 control-label">r</label>
+                  <div class="col-md-6">
+                    <input type="number" class="form-control" v-model="joint_data.dimensions.r">
+                  </div>
+                  <label class="col-md-2 control-label">in.</label>
+                </div>
+                <div class="form-group row">
+                  <label class="col-md-4 control-label">β</label>
+                  <div class="col-md-6">
+                    <input type="number" class="form-control" v-model="joint_data.dimensions.beta">
+                  </div>
+                  <label class="col-md-2 control-label">deg.</label>
+                </div>
               </div>
               <div v-if="joint_data.selected === 'u_groove'">
                 <%= image_tag(image_path('u_design.png'), :style => "max-width: 100%") %>
+                <div class="form-group row">
+                  <label class="col-md-4 control-label">a</label>
+                  <div class="col-md-6">
+                    <input type="number" class="form-control" v-model="joint_data.dimensions.a">
+                  </div>
+                  <label class="col-md-2 control-label">in.</label>
+                </div>
+                <div class="form-group row">
+                  <label class="col-md-4 control-label">b</label>
+                  <div class="col-md-6">
+                    <input type="number" class="form-control" v-model="joint_data.dimensions.b">
+                  </div>
+                  <label class="col-md-2 control-label">in.</label>
+                </div>
+                <div class="form-group row">
+                  <label class="col-md-4 control-label">r</label>
+                  <div class="col-md-6">
+                    <input type="number" class="form-control" v-model="joint_data.dimensions.r">
+                  </div>
+                  <label class="col-md-2 control-label">in.</label>
+                </div>
+                <div class="form-group row">
+                  <label class="col-md-4 control-label">β</label>
+                  <div class="col-md-6">
+                    <input type="number" class="form-control" v-model="joint_data.dimensions.beta">
+                  </div>
+                  <label class="col-md-2 control-label">deg.</label>
+                </div>
               </div>
               <div v-if="joint_data.selected === 'v_groove'">
                 <%= image_tag(image_path('v_design.png'), :style => "max-width: 100%") %>
+                <div class="form-group row">
+                  <label class="col-md-4 control-label">a</label>
+                  <div class="col-md-6">
+                    <input type="number" class="form-control" v-model="joint_data.dimensions.a">
+                  </div>
+                  <label class="col-md-2 control-label">in.</label>
+                </div>
+                <div class="form-group row">
+                  <label class="col-md-4 control-label">β</label>
+                  <div class="col-md-6">
+                    <input type="number" class="form-control" v-model="joint_data.dimensions.beta">
+                  </div>
+                  <label class="col-md-2 control-label">deg.</label>
+                </div>
               </div>
               <div v-if="joint_data.selected === 't_bevel'">
                 <%= image_tag(image_path('t_joint_design.png'), :style => "max-width: 100%") %>
+                <div class="form-group row">
+                  <label class="col-md-4 control-label">a</label>
+                  <div class="col-md-6">
+                    <input type="number" class="form-control" v-model="joint_data.dimensions.a">
+                  </div>
+                  <label class="col-md-2 control-label">in.</label>
+                </div>
+                <div class="form-group row">
+                  <label class="col-md-4 control-label">b</label>
+                  <div class="col-md-6">
+                    <input type="number" class="form-control" v-model="joint_data.dimensions.b">
+                  </div>
+                  <label class="col-md-2 control-label">in.</label>
+                </div>
+                <div class="form-group row">
+                  <label class="col-md-4 control-label">α</label>
+                  <div class="col-md-6">
+                    <input type="number" class="form-control" v-model="joint_data.dimensions.alpha">
+                  </div>
+                  <label class="col-md-2 control-label">deg.</label>
+                </div>
+                <div class="form-group row">
+                  <label class="col-md-4 control-label">β</label>
+                  <div class="col-md-6">
+                    <input type="number" class="form-control" v-model="joint_data.dimensions.beta">
+                  </div>
+                  <label class="col-md-2 control-label">deg.</label>
+                </div>
               </div>
             </div>
           </div>

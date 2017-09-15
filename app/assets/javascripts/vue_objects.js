@@ -97,10 +97,7 @@ $(document).ready(function () {
             joint_data: {
                 joint_designs: [
                     {
-                        value: 'bead_on_plate', title: 'Bead-on-Plate',
-                        dimensions: {
-                            // no joint dimensions for bead on plate
-                        }
+                        value: 'bead_on_plate', title: 'Bead-on-Plate'
                     },
                     {
                         value: 'bevel_groove', title: 'Bevel-Groove'
@@ -122,6 +119,13 @@ $(document).ready(function () {
                     }
                 ],
                 selected: 'bead_on_plate',
+                dimensions: {
+                    a: 0.1,
+                    b: 0.2,
+                    r: 0.125,
+                    alpha: 45,
+                    beta: 30
+                },
                 root_gap: {
                     present: 'false',
                     range: 0.04
