@@ -237,6 +237,27 @@
                   {{ joint_data.joint_designs.find(d => d.value === joint_design).title }}
                 </option>
               </select>
+              <div v-if="joint_data.selected === 'bead_on_plate'">
+                <%= image_tag(image_path('bead_on_plate_design.png'), :style => "max-width: 100%") %>
+              </div>
+              <div v-if="joint_data.selected === 'bevel_groove'">
+                <%= image_tag(image_path('bevel_groove_design.png'), :style => "max-width: 100%") %>
+              </div>
+              <div v-if="joint_data.selected === 'compound_bevel'">
+                <%= image_tag(image_path('cb_design.png'), :style => "max-width: 100%") %>
+              </div>
+              <div v-if="joint_data.selected === 'j_groove'">
+                <%= image_tag(image_path('j_design.png'), :style => "max-width: 100%") %>
+              </div>
+              <div v-if="joint_data.selected === 'u_groove'">
+                <%= image_tag(image_path('u_design.png'), :style => "max-width: 100%") %>
+              </div>
+              <div v-if="joint_data.selected === 'v_groove'">
+                <%= image_tag(image_path('v_design.png'), :style => "max-width: 100%") %>
+              </div>
+              <div v-if="joint_data.selected === 't_bevel'">
+                <%= image_tag(image_path('t_joint_design.png'), :style => "max-width: 100%") %>
+              </div>
             </div>
           </div>
         </div>
