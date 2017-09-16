@@ -6,44 +6,22 @@
 #  (much appreciated)
 #
 #----------------------------------------
+# for OSC MPI
 #
-#  place your favorite compiler here
-#
-# for solaris
-#
-# CC = gcc
-  CC = /usr/lang-4.0/bin/cc
-#
-# for sgi
-#
-# CC = cc
-#
-# for hp
-#
-# CC = /opt/mpi/bin/mpicc
+CC = mpicc
 #
 #----------------------------------------
 #
 #  set the compiler flags
 # 
-# OPTLEVEL = 
-# OPTLEVEL = -g -v
-  OPTLEVEL = -O
-# OPTLEVEL = -xO5 -v
-# OPTLEVEL = -O3
-# OPTLEVEL = -O4
-# CFLAGS = -Wall -g
-# CFLAGS = -Wall -pg
-# CFLAGS = $(OPTLEVEL) -D_POSIX_C_SOURCE=199506L
-  CFLAGS = $(OPTLEVEL)
-# CFLAGS = -Wall $(OPTLEVEL)
+OPTLEVEL = -O3
+CFLAGS = $(OPTLEVEL) $(MPI_CFLAGS) -fopenmp 
 #
 #----------------------------------------
 #
 #  set any load flags
 #
-#  LDFLAGS = -Wl,+parallel -Wl,+tm,spp2000 # for hp exemplar
-   LDFLAGS =
+LDFLAGS = $(MPI_LIBS)
 #
 #---------------------------------------------------------------------
 #
@@ -102,8 +80,8 @@
 #
 #  MPI install library
 #
-# MPI_INSTALL_DIR = 
-  MPI_INSTALL_DIR = /usr/local/mpich-1.0.13
+# MPI_INSTALL_DIR = /usr/local/mpich-1.0.13
+MPI_INSTALL_DIR = $(MPICH_HOME)
 #
 #---------------------------------------------------------------------
 #
@@ -115,7 +93,7 @@
 #
 # for solaris
 #
-  MPI_LIB_PATH = -L$(MPI_INSTALL_DIR)/lib/solaris/ch_p4
+# MPI_LIB_PATH = -L$(MPI_INSTALL_DIR)/lib/solaris/ch_p4
 #
 # for hp
 #
@@ -127,7 +105,7 @@
 #
 # for solaris
 #
-  MPI_LIBS = $(MPI_LIB_PATH) -D_REENTRANT -lmpi -lsocket -lnsl -lthread
+# MPI_LIBS = $(MPI_LIB_PATH) -D_REENTRANT -lmpi -lsocket -lnsl -lthread
 #
 # for sgi
 #
@@ -137,11 +115,14 @@
 # MPI_LIBS = -lpthread
 # MPI_LIBS = $(MPI_LIB_PATH) -lpthread 
 #
+# for intel
+# //  Just use MPI_LIBS
+#
 #---------------------------------------------------------------------
 #
 #  MPI include path
 #
 # MPI_INCLUDE_DIR = 
-  MPI_INCLUDE_DIR = -I$(MPI_INSTALL_DIR)/include
+MPI_INCLUDE_DIR = -I$(MPI_INSTALL_DIR)/include
 #
 #---------------------------------------------------------------------

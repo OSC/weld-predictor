@@ -1,8 +1,13 @@
 
 CFLAGS = -Wall -O3 -fopenmp -I ../../../SPOOLES.2.2 -DARCH="Linux" -DSPOOLES -DARPACK -DMATRIXSTORAGE -DNETWORKOUT
+
+# GNU-style
 FFLAGS = -Wall -O3 -fopenmp
 
-CC=cc
+# Intel-style
+#FFLAGS = -O3 -fopenmp -nofor-main
+
+CC=gcc
 FC=gfortran
 
 .c.o :
@@ -26,7 +31,11 @@ LIBS = \
        -lpthread -lm -lc
 
 ccx_2.12: $(OCCXMAIN) ccx_2.12.a  $(LIBS)
-	./date.pl; $(CC) $(CFLAGS) -c ccx_2.12.c; $(FC) -fopenmp -Wall -O3 -o $@ $(OCCXMAIN) ccx_2.12.a $(LIBS)
+# GNU-style
+	./date.pl; $(CC) $(CFLAGS) -c ccx_2.12.c; $(FC) $(FFLAGS) -o $@ $(OCCXMAIN) ccx_2.12.a $(LIBS)
+
+# Intel-style
+#	./date.pl; $(CC) $(CFLAGS) -c ccx_2.12.c; $(FC) -fopenmp -nofor-main -O3 -o $@ $(OCCXMAIN) ccx_2.12.a $(LIBS)
 
 ccx_2.12.a: $(OCCXF) $(OCCXC)
 	ar vr $@ $?
