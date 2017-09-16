@@ -34,3 +34,7 @@
 # Ignore all CalculiX build files
 /lib/calculix/**/*.o
 /lib/calculix/**/*.a
+
+# Ignore all CalculiX test files...for now
+/lib/calculix/CalculiX/ccx_2.12/test
+/lib/calculix/CalculiX/ccx_2.12/testfluid
