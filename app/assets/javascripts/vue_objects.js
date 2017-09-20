@@ -89,7 +89,15 @@ $(document).ready(function () {
                         ]
                     },
                     {
-                        value: 'lap_joint', title: 'Lap Joint'
+                        value: 'lap_joint', title: 'Lap Joint',
+                        dimensions: {
+                            thickness_t1: 0.5,
+                            thickness_t2: 0.5,
+                            width_w1: 6,
+                            width_w2: 6,
+                            overlap: 0.5,
+                            length: 20
+                        }
                     }
                 ],
                 selected: 'plate'
