@@ -233,6 +233,16 @@ $(document).ready(function () {
                 monitors: []
             }
         }, methods: {
+
+            compatibleJoint: function() {
+                // This method will select a joint that is compatible with the selected fixture type if the currently selected joint is not compatible.
+                var shape = this.$data.dimension_data.fixture_shapes.find(shape => shape.value === this.$data.dimension_data.selected);
+                var joint = this.$data.joint_data.selected;
+                if (!shape.joint_designs.includes(joint)) {
+                    this.$data.joint_data.selected = shape.joint_designs[0];
+                }
+            },
+
             saveSimulation: function() {
                 if (simulation_id == null) {
                     // Create a new Simulation

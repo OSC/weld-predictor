@@ -60,7 +60,7 @@
           <div class="panel-body">
             <div class="form-group">
               <label for="fixture-shape">Fixture Shape:</label>
-              <select v-model="dimension_data.selected" class="form-control" id="fixture-shape">
+              <select v-model="dimension_data.selected" class="form-control" id="fixture-shape" @change="compatibleJoint">
                 <option v-for="fixture_shape in dimension_data.fixture_shapes" v-bind:value="fixture_shape.value">
                   {{ fixture_shape.title }}
                 </option>
