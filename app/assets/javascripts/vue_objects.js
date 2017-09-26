@@ -244,7 +244,18 @@ $(document).ready(function () {
             },
 
             removeWeldPass: function(key) {
+                // Remove a weld pass from the array at the specified index
                 this.$data.procedure_data.weld_passes.splice(key, 1);
+            },
+
+            addWeldPass: function() {
+                // Add a weld pass to the array with default dimensions
+                var basic_weld_pass = {
+                    current_A: 200.0,
+                    voltage_V: 22.5,
+                    travel_ipm: 7.5
+                };
+                this.$data.procedure_data.weld_passes.push(basic_weld_pass);
             },
 
             saveSimulation: function() {
