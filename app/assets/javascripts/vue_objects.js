@@ -243,6 +243,10 @@ $(document).ready(function () {
                 }
             },
 
+            removeWeldPass: function(key) {
+                this.$data.procedure_data.weld_passes.splice(key, 1);
+            },
+
             saveSimulation: function() {
                 if (simulation_id == null) {
                     // Create a new Simulation

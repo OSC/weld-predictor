@@ -570,7 +570,7 @@
             </div>
             <div v-for="(pass, key) in procedure_data.weld_passes">
               <div class="panel panel-default">
-                <div class="panel-heading">Weld Pass {{ key + 1 }}</div>
+                <div class="panel-heading">Weld Pass {{ key + 1 }}<i class="fa fa-times pull-right" @click="removeWeldPass(key)" aria-hidden="true"></i></div>
                 <div class="panel-body">
                   <label>Current (A)</label>
                   <input v-model.number="pass.current_A" class="form-control" type="number" />
