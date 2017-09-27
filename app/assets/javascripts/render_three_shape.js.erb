@@ -1,10 +1,15 @@
-function render_three_shape() {
+function render_three_shape(vue_data) {
 
     var container;
     var camera, scene, renderer, controls, width, height;
     init();
     animate();
+
     function init() {
+
+        //console.log(vue_data);
+
+
 
 
         width = $("#weld-render-view").width();
@@ -120,6 +125,11 @@ function render_three_shape() {
         */
 
     }
+
+    function buildPlate(vue_data) {
+
+    }
+
     function animate() {
         requestAnimationFrame( animate );
         controls.update();

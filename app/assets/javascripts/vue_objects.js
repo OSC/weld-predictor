@@ -317,7 +317,7 @@ $(document).ready(function () {
             })
     };
 
-    render_three_shape();
+    render_three_shape(vm.$data);
 
     $('#form-submit-button').on('click', function () {
             vm.saveSimulation();
