@@ -272,6 +272,10 @@ $(document).ready(function () {
                 this.$data.procedure_data.weld_passes.push(basic_weld_pass);
             },
 
+            renderThree: function() {
+                render_three_shape(this.$data);
+            },
+
             saveSimulation: function() {
                 if (simulation_id == null) {
                     // Create a new Simulation

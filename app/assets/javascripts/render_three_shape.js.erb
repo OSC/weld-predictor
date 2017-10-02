@@ -9,16 +9,13 @@ function render_three_shape(vue_data) {
 
         //console.log(vue_data);
 
-
-
-
         width = $("#weld-render-view").width();
         height = width * 0.75;
         renderer = new THREE.WebGLRenderer();
         renderer.setClearColor( 0x222222 );
         renderer.setPixelRatio( window.devicePixelRatio );
         renderer.setSize( width, height );
-        $("#weld-render-view").append( renderer.domElement );
+        $("#weld-render-view").html( renderer.domElement );
         scene = new THREE.Scene();
         var aspectRatio = width / height;
         camera = new THREE.PerspectiveCamera( 45, aspectRatio * 1.2, 1, 1000 );
@@ -43,6 +40,39 @@ function render_three_shape(vue_data) {
         scene.add( light );
 
 
+        switch(vue_data.dimension_data.selected) {
+            case 'plate':
+                buildPlate(vue_data, scene);
+                break;
+            case 'lap_joint':
+                buildLapJoint(vue_data, scene);
+                break;
+            case 't_plate':
+                buildTeeJoint(vue_data, scene);
+                break;
+            default:
+                buildPlate(vue_data, scene);
+        }
+
+    }
+
+    function buildPlate(vue_data, scene) {
+        // Plate
+        var width = 200;
+        var height = 10;
+        var depth = 200;
+        var material = new THREE.MeshLambertMaterial({color: '#a8b2c1', map: new THREE.TextureLoader().load( "<%= asset_path 'square-outline.png' %>" )});
+        var cube = new THREE.CubeGeometry(width, height, depth);
+        cube = new THREE.Mesh( cube, material );
+        cube.position.set(width * 0.5, height, 0);
+        scene.add(cube);
+        var cube2 = new THREE.CubeGeometry(width, height, depth);
+        cube2 = new THREE.Mesh( cube2, material );
+        cube2.position.set(-(width * 0.5), height, 0);
+        scene.add(cube2);
+    }
+
+    function buildLapJoint(vue_data, scene) {
         // Lap Joint
         var width = 300;
         var height = 10;
@@ -56,78 +86,25 @@ function render_three_shape(vue_data) {
         cube2 = new THREE.Mesh( cube2, material );
         cube2.position.set(-(width * 0.25), height * 0.5, 0);
         scene.add(cube2);
-
-        //
-        /*var closedSpline = new THREE.CatmullRomCurve3( [
-            new THREE.Vector3( -60, -100,  60 ),
-            new THREE.Vector3( -60,   20,  60 ),
-            new THREE.Vector3( -60,  120,  60 ),
-            new THREE.Vector3(  60,   20, -60 ),
-            new THREE.Vector3(  60, -100, -60 )
-        ] );
-        closedSpline.type = 'catmullrom';
-        closedSpline.closed = true;
-        var extrudeSettings = {
-            steps			: 100,
-            bevelEnabled	: false,
-            extrudePath		: closedSpline
-        };
-        var pts = [], count = 3;
-        for ( var i = 0; i < count; i ++ ) {
-            var l = 20;
-            var a = 2 * i / count * Math.PI;
-            pts.push( new THREE.Vector2 ( Math.cos( a ) * l, Math.sin( a ) * l ) );
-        }
-        var shape = new THREE.Shape( pts );
-        var geometry = new THREE.ExtrudeGeometry( shape, extrudeSettings );
-        var material = new THREE.MeshLambertMaterial( { color: 0xb00000, wireframe: false } );
-        var mesh = new THREE.Mesh( geometry, material );
-        scene.add( mesh );
-        //
-        var randomPoints = [];
-        for ( var i = 0; i < 10; i ++ ) {
-            randomPoints.push( new THREE.Vector3( ( i - 4.5 ) * 50, THREE.Math.randFloat( - 50, 50 ), THREE.Math.randFloat( - 50, 50 ) ) );
-        }
-        var randomSpline =  new THREE.CatmullRomCurve3( randomPoints );
-        //
-        var extrudeSettings = {
-            steps			: 200,
-            bevelEnabled	: false,
-            extrudePath		: randomSpline
-        };
-        var pts = [], numPts = 5;
-        for ( var i = 0; i < numPts * 2; i ++ ) {
-            var l = i % 2 == 1 ? 10 : 20;
-            var a = i / numPts * Math.PI;
-            pts.push( new THREE.Vector2 ( Math.cos( a ) * l, Math.sin( a ) * l ) );
-        }
-        var shape = new THREE.Shape( pts );
-        var geometry = new THREE.ExtrudeGeometry( shape, extrudeSettings );
-        var material2 = new THREE.MeshLambertMaterial( { color: 0xff8000, wireframe: false } );
-        var mesh = new THREE.Mesh( geometry, material2 );
-        scene.add( mesh );
-        //
-        var materials = [ material, material2 ];
-        var extrudeSettings = {
-            amount			: 20,
-            steps			: 1,
-            material		: 1,
-            extrudeMaterial : 0,
-            bevelEnabled	: true,
-            bevelThickness  : 2,
-            bevelSize       : 4,
-            bevelSegments   : 1
-        };
-        var geometry = new THREE.ExtrudeGeometry( shape, extrudeSettings );
-        var mesh = new THREE.Mesh( geometry, materials );
-        mesh.position.set( 50, 100, 50 );
-        scene.add( mesh );
-        */
-
     }
 
-    function buildPlate(vue_data) {
+    function buildTeeJoint(vue_data, scene) {
+        // Tee Joint
+        var width = 300;
+        var height = 10;
+        var depth = 250;
+        var tee_width = 20;
+        var tee_height = 50;
 
+        var material = new THREE.MeshLambertMaterial({color: '#a8b2c1', map: new THREE.TextureLoader().load( "<%= asset_path 'square-outline.png' %>" )});
+        var cube = new THREE.CubeGeometry(width, height, depth);
+        cube = new THREE.Mesh( cube, material );
+        cube.position.set(0, 0, 0);
+        scene.add(cube);
+        var cube2 = new THREE.CubeGeometry(tee_width, tee_height, depth);
+        cube2 = new THREE.Mesh( cube2, material );
+        cube2.position.set(0, (height / 2.0) + (tee_height / 2.0), 0);
+        scene.add(cube2);
     }
 
     function animate() {
