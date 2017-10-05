@@ -44,6 +44,9 @@ function render_three_shape(vue_data) {
             case 'plate':
                 buildPlate(vue_data, scene);
                 break;
+            case 'pipe':
+                buildPipe(vue_data, scene);
+                break;
             case 'lap_joint':
                 buildLapJoint(vue_data, scene);
                 break;
@@ -105,6 +108,32 @@ function render_three_shape(vue_data) {
         cube2 = new THREE.Mesh( cube2, material );
         cube2.position.set(0, (height / 2.0) + (tee_height / 2.0), 0);
         scene.add(cube2);
+    }
+
+    function buildPipe(vue_data, scene) {
+        // Tee Joint
+        var outer_diameter = 300;
+        var wall_thickness = 100;
+        var length = 250;
+
+        var material = new THREE.MeshLambertMaterial({color: '#a8b2c1', map: new THREE.TextureLoader().load( "<%= asset_path 'square-outline.png' %>" )});
+
+        /*
+            CylinderGeometry(radiusTop, radiusBottom, height, radiusSegments, heightSegments, openEnded, thetaStart, thetaLength)
+
+                radiusTop — Radius of the cylinder at the top. Default is 20.
+                radiusBottom — Radius of the cylinder at the bottom. Default is 20.
+                height — Height of the cylinder. Default is 100.
+                radiusSegments — Number of segmented faces around the circumference of the cylinder. Default is 8
+                heightSegments — Number of rows of faces along the height of the cylinder. Default is 1.
+                openEnded — A Boolean indicating whether the ends of the cylinder are open or capped. Default is false, meaning capped.
+                thetaStart — Start angle for first segment, default = 0 (three o'clock position).
+                thetaLength — The central angle, often called theta, of the circular sector. The default is 2*Pi, which makes for a complete cylinder.
+         */
+        var cube = new THREE.CylinderGeometry(50, 50, 200, 320);
+        cube = new THREE.Mesh( cube, material );
+        cube.position.set(0, 0, 0);
+        scene.add(cube);
     }
 
     function animate() {
