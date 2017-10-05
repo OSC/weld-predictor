@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :meshes
   resources :simulations do
     member do
       put 'submit'
