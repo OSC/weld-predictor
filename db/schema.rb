@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170731184806) do
+ActiveRecord::Schema.define(version: 20171005190359) do
+
+  create_table "meshes", force: :cascade do |t|
+    t.string   "title"
+    t.string   "stl_files",  default: "--- []\n"
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+  end
 
   create_table "simulation_jobs", force: :cascade do |t|
     t.integer  "simulation_id"
