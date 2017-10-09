@@ -1,0 +1,29 @@
+<%= bootstrap_form_for(@mesh) do |f| %>
+  <% if @mesh.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@mesh.errors.count, "error") %> prohibited this mesh from being saved:</h2>
+
+      <ul>
+      <% @mesh.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :stl_files %>
+    <% @mesh.stl_files.each do |stl_file| %>
+        <%= stl_file.to_s %>
+    <% end %>
+  </div>
+  <div class="field">
+    <%= f.file_field :inputfile %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

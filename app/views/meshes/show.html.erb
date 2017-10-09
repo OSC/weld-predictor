@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @mesh.title %>
+</p>
+
+<p>
+  <strong>Stl files:</strong>
+  <%= @mesh.stl_files %>
+</p>
+
+<%= link_to 'Edit', edit_mesh_path(@mesh) %> |
+<%= link_to 'Back', meshes_path %>
