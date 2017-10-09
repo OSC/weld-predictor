@@ -30,3 +30,12 @@
 
 # Do not version the dependencies
 /vendor/bundle
+
+# Ignore all CalculiX build files
+/lib/calculix/**/*.o
+/lib/calculix/**/*.a
+/lib/calculix/CalculiX/ccx_2.12/src/ccx_2.12
+
+# Ignore all CalculiX test files...for now
+/lib/calculix/CalculiX/ccx_2.12/test
+/lib/calculix/CalculiX/ccx_2.12/testfluid
