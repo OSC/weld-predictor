@@ -69,6 +69,6 @@ class MeshesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def mesh_params
-      params.require(:mesh).permit(:title, :stl_files)
+      params.require(:mesh).permit!
     end
 end

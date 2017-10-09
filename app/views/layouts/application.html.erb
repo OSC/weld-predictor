@@ -43,6 +43,9 @@
           <li>
             <%= link_to '<span class="glyphicon glyphicon-plus"></span> Add Simulation'.html_safe, new_simulation_path %>
           </li>
+          <li>
+            <%= link_to '<span class="glyphicon glyphicon-plus"></span> Add Mesh'.html_safe, new_mesh_path %>
+          </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <% if OodAppkit.routes.wiki && File.exist?(File.join('wiki/Home.md')) %>
