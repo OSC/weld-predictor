@@ -10,5 +10,10 @@
   <%= @mesh.stl_files %>
 </p>
 
+<p>
+  <strong>Input File Name:</strong>
+  <%= @mesh.inputfile_file_name %>
+</p>
+
 <%= link_to 'Edit', edit_mesh_path(@mesh) %> |
 <%= link_to 'Back', meshes_path %>
