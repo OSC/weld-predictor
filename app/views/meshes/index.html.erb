@@ -7,6 +7,7 @@
     <tr>
       <th>Title</th>
       <th>Stl files</th>
+      <th>Input file</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -16,6 +17,7 @@
       <tr>
         <td><%= mesh.title %></td>
         <td><%= mesh.stl_files %></td>
+        <td><%= mesh.inputfile_file_name %></td>
         <td><%= link_to 'Show', mesh %></td>
         <td><%= link_to 'Edit', edit_mesh_path(mesh) %></td>
         <td><%= link_to 'Destroy', mesh, method: :delete, data: { confirm: 'Are you sure?' } %></td>
