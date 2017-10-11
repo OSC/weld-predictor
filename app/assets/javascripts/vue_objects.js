@@ -250,7 +250,10 @@ $(document).ready(function () {
 
             compatibleJoint: function() {
                 // This method will select a joint that is compatible with the selected fixture type if the currently selected joint is not compatible.
-                var shape = this.$data.dimension_data.fixture_shapes.find(shape => shape.value === this.$data.dimension_data.selected);
+                // var shape = this.$data.dimension_data.fixture_shapes.find(shape => shape.value === this.$data.dimension_data.selected);
+                var shape = this.$data.dimension_data.fixture_shapes.find(function (shape) {
+                    return shape.value === this.$data.dimension_data.selected;
+                }, this);
                 var joint = this.$data.joint_data.selected;
                 if (!shape.joint_designs.includes(joint)) {
                     this.$data.joint_data.selected = shape.joint_designs[0];
