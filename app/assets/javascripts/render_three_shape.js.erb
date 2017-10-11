@@ -47,6 +47,9 @@ function render_three_shape(vue_data) {
             case 'pipe':
                 buildPipe(vue_data, scene);
                 break;
+            case 't_pipe':
+                buildTeePipe(vue_data, scene);
+                break;
             case 'lap_joint':
                 buildLapJoint(vue_data, scene);
                 break;
@@ -134,6 +137,41 @@ function render_three_shape(vue_data) {
         cube = new THREE.Mesh( cube, material );
         cube.position.set(0, 0, 0);
         scene.add(cube);
+    }
+
+    function buildTeePipe(vue_data, scene) {
+        // Tee Joint
+        var outer_diameter = 300;
+        var wall_thickness = 100;
+        var length = 250;
+
+        var outer_diameter_tee = 500;
+        var wall_thickness_tee = (outer_diameter_tee - outer_diameter) / 2;
+        var length_tee = 50;
+
+        var material = new THREE.MeshLambertMaterial({color: '#a8b2c1', map: new THREE.TextureLoader().load( "<%= asset_path 'square-outline.png' %>" )});
+
+        /*
+            CylinderGeometry(radiusTop, radiusBottom, height, radiusSegments, heightSegments, openEnded, thetaStart, thetaLength)
+
+                radiusTop — Radius of the cylinder at the top. Default is 20.
+                radiusBottom — Radius of the cylinder at the bottom. Default is 20.
+                height — Height of the cylinder. Default is 100.
+                radiusSegments — Number of segmented faces around the circumference of the cylinder. Default is 8
+                heightSegments — Number of rows of faces along the height of the cylinder. Default is 1.
+                openEnded — A Boolean indicating whether the ends of the cylinder are open or capped. Default is false, meaning capped.
+                thetaStart — Start angle for first segment, default = 0 (three o'clock position).
+                thetaLength — The central angle, often called theta, of the circular sector. The default is 2*Pi, which makes for a complete cylinder.
+         */
+        var inner_pipe = new THREE.CylinderGeometry(50, 50, 200, 320);
+        inner_pipe = new THREE.Mesh( inner_pipe, material );
+        inner_pipe.position.set(0, 0, 0);
+        scene.add(inner_pipe);
+
+        var outer_pipe = new THREE.CylinderGeometry(70, 70, 40, 320);
+        outer_pipe = new THREE.Mesh( outer_pipe, material );
+        outer_pipe.position.set(0, 0, 0);
+        scene.add(outer_pipe);
     }
 
     function animate() {
