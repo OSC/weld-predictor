@@ -310,7 +310,7 @@ $(document).ready(function () {
         }
     });
 
-    if (simulation_id != null) {
+    if (typeof simulation_id !== 'undefined' && simulation_id != null) {
         console.log("Loading simulation from server");
         // TODO Add a "processing" notice for the user
         axios.get(Routes.simulation_path(simulation_id, {format: 'json'}))
