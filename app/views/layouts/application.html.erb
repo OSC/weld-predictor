@@ -57,6 +57,9 @@
             <p class="navbar-text">Logged in as <%= OodSupport::User.new.name %></p>
           </li>
           <li>
+            <%= link_to "My Meshes", meshes_path %>
+          </li>
+          <li>
             <%= link_to "My Simulations", root_path %>
           </li>
         </ul>
