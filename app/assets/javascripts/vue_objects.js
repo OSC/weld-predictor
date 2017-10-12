@@ -348,4 +348,5 @@ function setInitialVueState(vue_instance, jobcache) {
     vue_instance.$data.fixture_data = jobcache.data.fixture_data;
     vue_instance.$data.dimension_data = jobcache.data.dimension_data;
     vue_instance.$data.bead_data = jobcache.data.bead_data;
+    render_three_shape(vue_instance.$data);
 }
