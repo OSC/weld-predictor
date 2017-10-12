@@ -32,8 +32,8 @@ $(document).ready(function () {
                             dimensions: {
                                 width_w1: 12,
                                 width_w2: 12,
-                                thickness: 1,
-                                length: 20
+                                thickness: 0.5,
+                                length: 4
                             },
                             joint_designs: [
                                 'bead_on_plate',
@@ -323,9 +323,9 @@ $(document).ready(function () {
                     // TODO Handle error
                     console.log(error);
                 })
+        } else {
+            render_three_shape(vm.$data);
         };
-
-        render_three_shape(vm.$data);
 
         $('#form-submit-button').on('click', function () {
                 vm.saveSimulation();
