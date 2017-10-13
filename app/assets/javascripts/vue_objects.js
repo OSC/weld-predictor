@@ -247,7 +247,8 @@ $(document).ready(function () {
                     coolers: [],
                     monitors: []
                 }
-            }, methods: {
+            },
+            methods: {
 
                 compatibleJoint: function() {
                     // This method will select a joint that is compatible with the selected fixture type if the currently selected joint is not compatible.
