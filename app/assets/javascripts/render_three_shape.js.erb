@@ -76,17 +76,26 @@ function render_three_shape(vue_data) {
             return shape.value === 'plate';
         }, this);
 
-        var width = inchesToPixels(plate_data.dimensions.width_w1);
+        // dimensions: {
+        //    width_w1: 12,
+        //    width_w2: 12,
+        //    thickness: 0.5,
+        //    length: 4
+        //}
+        var width_w1 = inchesToPixels(plate_data.dimensions.width_w1);
+        var width_w2 = inchesToPixels(plate_data.dimensions.width_w2);
         var height = inchesToPixels(plate_data.dimensions.thickness);
         var depth = inchesToPixels(plate_data.dimensions.length);
+
         var material = new THREE.MeshLambertMaterial({color: '#a8b2c1', map: new THREE.TextureLoader().load( "<%= asset_path 'metal.png' %>" )});
-        var cube = new THREE.CubeGeometry(width, height, depth);
+
+        var cube = new THREE.CubeGeometry(width_w1, height, depth);
         cube = new THREE.Mesh( cube, material );
-        cube.position.set(width * 0.5, height, 0);
+        cube.position.set(-(width_w1 * 0.5), height, 0);
         scene.add(cube);
-        var cube2 = new THREE.CubeGeometry(width, height, depth);
+        var cube2 = new THREE.CubeGeometry(width_w2, height, depth);
         cube2 = new THREE.Mesh( cube2, material );
-        cube2.position.set(-(width * 0.5), height, 0);
+        cube2.position.set(width_w2 * 0.5, height, 0);
         scene.add(cube2);
     }
 
