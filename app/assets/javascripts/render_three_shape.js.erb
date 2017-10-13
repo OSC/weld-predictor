@@ -134,20 +134,34 @@ function render_three_shape(vue_data) {
 
     function buildTeeJoint(vue_data, scene) {
         // Tee Joint
-        var width = 300;
-        var height = 10;
-        var depth = 250;
-        var tee_width = 20;
-        var tee_height = 50;
+        var tee_joint_data = vue_data.dimension_data.fixture_shapes.find(function (shape) {
+            return shape.value === 't_plate';
+        }, this);
+
+        //dimensions: {
+        //    thickness_t1: 0.5,
+        //    thickness_t2: 0.5,
+        //    width_w1: 6,
+        //    width_w2: 6,
+        //    length_l: 20,
+        //    height_h: 4
+        //}
+        var thickness_t1 = inchesToPixels(tee_joint_data.dimensions.thickness_t1);
+        var thickness_t2 = inchesToPixels(tee_joint_data.dimensions.thickness_t2);
+        var width_w1 = inchesToPixels(tee_joint_data.dimensions.width_w1);
+        var width_w2 = inchesToPixels(tee_joint_data.dimensions.width_w2);
+        var length = inchesToPixels(tee_joint_data.dimensions.length_l);
+        var height = inchesToPixels(tee_joint_data.dimensions.height_h);
 
         var material = new THREE.MeshLambertMaterial({color: '#a8b2c1', map: new THREE.TextureLoader().load( "<%= asset_path 'metal.png' %>" )});
-        var cube = new THREE.CubeGeometry(width, height, depth);
+
+        var cube = new THREE.CubeGeometry(width_w1 + width_w2, thickness_t1, length);
         cube = new THREE.Mesh( cube, material );
-        cube.position.set(0, 0, 0);
+        cube.position.set((width_w2 * 0.5) - (width_w1 * 0.5), -(thickness_t1 * 0.5), 0);
         scene.add(cube);
-        var cube2 = new THREE.CubeGeometry(tee_width, tee_height, depth);
+        var cube2 = new THREE.CubeGeometry(thickness_t2, height, length);
         cube2 = new THREE.Mesh( cube2, material );
-        cube2.position.set(0, (height / 2.0) + (tee_height / 2.0), 0);
+        cube2.position.set(0, (height * 0.5), 0);
         scene.add(cube2);
     }
 
