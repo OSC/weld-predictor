@@ -154,16 +154,17 @@ function render_three_shape(vue_data) {
         var width_w2 = inchesToPixels(tee_joint_data.dimensions.width_w2);
         var length = inchesToPixels(tee_joint_data.dimensions.length_l);
         var height = inchesToPixels(tee_joint_data.dimensions.height_h);
+        var root_gap = vue_data.joint_data.root_gap.present ? inchesToPixels(vue_data.joint_data.root_gap.range) : 0;
 
         var material = new THREE.MeshLambertMaterial({color: '#a8b2c1', map: new THREE.TextureLoader().load( "<%= asset_path 'metal.png' %>" )});
 
         var cube = new THREE.CubeGeometry(width_w1 + width_w2, thickness_t1, length);
         cube = new THREE.Mesh( cube, material );
-        cube.position.set((width_w2 * 0.5) - (width_w1 * 0.5), -(thickness_t1 * 0.5), 0);
+        cube.position.set((width_w2 * 0.5) - (width_w1 * 0.5), (-(thickness_t1 * 0.5) - (root_gap * 0.5)), 0);
         scene.add(cube);
         var cube2 = new THREE.CubeGeometry(thickness_t2, height, length);
         cube2 = new THREE.Mesh( cube2, material );
-        cube2.position.set(0, (height * 0.5), 0);
+        cube2.position.set(0, (height * 0.5) + (root_gap * 0.5), 0);
         scene.add(cube2);
     }
 
