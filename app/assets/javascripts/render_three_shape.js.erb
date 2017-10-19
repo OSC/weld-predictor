@@ -6,68 +6,77 @@ function pixelsToInches(pixels) {
     return pixels / 100.0;
 }
 
+// Global variables
+var renderer;
+var scene;
+var camera;
+var controls;
+
+function init_three() {
+
+    var width, height;
+
+    width = $("#weld-render-view").width();
+    height = width * 0.75;
+    renderer = new THREE.WebGLRenderer();
+    renderer.setClearColor( 0x222222 );
+    renderer.setPixelRatio( window.devicePixelRatio );
+    renderer.setSize( width, height );
+    $("#weld-render-view").html( renderer.domElement );
+    scene = new THREE.Scene();
+    var aspectRatio = width / height;
+    camera = new THREE.PerspectiveCamera( 45, aspectRatio * 1.2, 1, 10000 );
+    camera.position.set( 0, 0, 2000 );
+
+    controls = new THREE.TrackballControls( camera, renderer.domElement );
+    controls.minDistance = 100;
+    controls.maxDistance = 10000;
+    var ambientlight = new THREE.AmbientLight( 0xffffff );
+    ambientlight.intensity = 0.6;
+    scene.add( ambientlight );
+    var light = new THREE.PointLight( 0xffffff );
+    light.position.copy( camera.position );
+    scene.add( light );
+}
+
 function render_three_shape(vue_data) {
 
-    var container;
-    var camera, scene, renderer, controls, width, height;
-    init();
-    animate();
-
-    function init() {
-
-        //console.log(vue_data);
-
-        width = $("#weld-render-view").width();
-        height = width * 0.75;
-        renderer = new THREE.WebGLRenderer();
-        renderer.setClearColor( 0x222222 );
-        renderer.setPixelRatio( window.devicePixelRatio );
-        renderer.setSize( width, height );
-        $("#weld-render-view").html( renderer.domElement );
-        scene = new THREE.Scene();
-        var aspectRatio = width / height;
-        camera = new THREE.PerspectiveCamera( 45, aspectRatio * 1.2, 1, 10000 );
-        camera.position.set( 0, 0, 2000 );
-
-        // Controls for Orthographic camera (trackball controls are wonky though)
-        //var viewSize = 900;
-        // OrthographicCamera( left, right, top, bottom, near, far)
-        //camera = new THREE.OrthographicCamera( -aspectRatio*viewSize/2, aspectRatio*viewSize/2, viewSize/2, -viewSize/2, -1000, 1000 );
-        //camera.position.set( 20, 20, 20 ); // all components equal
-        //camera.lookAt( scene.position ); // or the origin
-        // controls = new THREE.OrthographicTrackballControls( camera, renderer.domElement );
-
-        controls = new THREE.TrackballControls( camera, renderer.domElement );
-        controls.minDistance = 100;
-        controls.maxDistance = 10000;
-        var ambientlight = new THREE.AmbientLight( 0xffffff );
-        ambientlight.intensity = 0.6;
-        scene.add( ambientlight );
-        var light = new THREE.PointLight( 0xffffff );
-        light.position.copy( camera.position );
-        scene.add( light );
-
-
-        switch(vue_data.dimension_data.selected) {
-            case 'plate':
-                buildPlate(vue_data, scene);
-                break;
-            case 'pipe':
-                buildPipe(vue_data, scene);
-                break;
-            case 't_pipe':
-                buildTeePipe(vue_data, scene);
-                break;
-            case 'lap_joint':
-                buildLapJoint(vue_data, scene);
-                break;
-            case 't_plate':
-                buildTeeJoint(vue_data, scene);
-                break;
-            default:
-                buildPlate(vue_data, scene);
+    if (scene === undefined) {
+        // Initialize the scene and objects on first run.
+        init_three();
+    } else {
+        // If the scene has already been defined, remove the existing meshes.
+        for (var i = scene.children.length - 1; i >= 0; i--) {
+            if (scene.children[i].isMesh) {
+                scene.children.splice(i, 1);
+            }
         }
+    }
 
+    switch(vue_data.dimension_data.selected) {
+        case 'plate':
+            buildPlate(vue_data, scene);
+            animate();
+            break;
+        case 'pipe':
+            buildPipe(vue_data, scene);
+            animate();
+            break;
+        case 't_pipe':
+            buildTeePipe(vue_data, scene);
+            animate();
+            break;
+        case 'lap_joint':
+            buildLapJoint(vue_data, scene);
+            animate();
+            break;
+        case 't_plate':
+            buildTeeJoint(vue_data, scene);
+            animate();
+            break;
+        default:
+            buildPlate(vue_data, scene);
+            animate();
     }
 
     function buildPlate(vue_data, scene) {
