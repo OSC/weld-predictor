@@ -11,6 +11,7 @@ var renderer;
 var scene;
 var camera;
 var controls;
+var material;
 
 function init_three() {
 
@@ -37,6 +38,8 @@ function init_three() {
     var light = new THREE.PointLight( 0xffffff );
     light.position.copy( camera.position );
     scene.add( light );
+
+    material = new THREE.MeshLambertMaterial({color: '#a8b2c1', map: new THREE.TextureLoader().load( "<%= asset_path 'metal.png' %>" )});
 }
 
 function render_three_shape(vue_data) {
@@ -95,9 +98,11 @@ function render_three_shape(vue_data) {
         var width_w2 = inchesToPixels(plate_data.dimensions.width_w2);
         var height = inchesToPixels(plate_data.dimensions.thickness);
         var depth = inchesToPixels(plate_data.dimensions.length);
-        var root_gap = vue_data.joint_data.root_gap.present && (vue_data.joint_data.selected !== 'bead_on_plate') ? inchesToPixels(vue_data.joint_data.root_gap.range) : 0;
-
-        var material = new THREE.MeshLambertMaterial({color: '#a8b2c1', map: new THREE.TextureLoader().load( "<%= asset_path 'metal.png' %>" )});
+        var root_gap = vue_data.joint_data.root_gap.present ? inchesToPixels(vue_data.joint_data.root_gap.range) : 0;
+        // Don't show a root gap when bead on plate selected
+        if (vue_data.joint_data.selected === 'bead_on_plate') {
+            root_gap = 0;
+        }
 
         var cube = new THREE.CubeGeometry(width_w1, height, depth);
         cube = new THREE.Mesh( cube, material );
@@ -131,8 +136,6 @@ function render_three_shape(vue_data) {
         var depth = inchesToPixels(lap_joint_data.dimensions.length);
         var root_gap = vue_data.joint_data.root_gap.present ? inchesToPixels(vue_data.joint_data.root_gap.range) : 0;
 
-        var material = new THREE.MeshLambertMaterial({color: '#a8b2c1', map: new THREE.TextureLoader().load( "<%= asset_path 'metal.png' %>" )});
-
         var cube = new THREE.CubeGeometry(width_w1, height_t1, depth);
         cube = new THREE.Mesh( cube, material );
         cube.position.set((width_w1 * 0.5) - (overlap * 0.5), (-(height_t1 * 0.5) - (root_gap * 0.5)), 0);
@@ -165,8 +168,6 @@ function render_three_shape(vue_data) {
         var height = inchesToPixels(tee_joint_data.dimensions.height_h);
         var root_gap = vue_data.joint_data.root_gap.present ? inchesToPixels(vue_data.joint_data.root_gap.range) : 0;
 
-        var material = new THREE.MeshLambertMaterial({color: '#a8b2c1', map: new THREE.TextureLoader().load( "<%= asset_path 'metal.png' %>" )});
-
         var cube = new THREE.CubeGeometry(width_w1 + width_w2, thickness_t1, length);
         cube = new THREE.Mesh( cube, material );
         cube.position.set((width_w2 * 0.5) - (width_w1 * 0.5), (-(thickness_t1 * 0.5) - (root_gap * 0.5)), 0);
@@ -182,8 +183,6 @@ function render_three_shape(vue_data) {
         var outer_diameter = 300;
         var wall_thickness = 100;
         var length = 250;
-
-        var material = new THREE.MeshLambertMaterial({color: '#a8b2c1', map: new THREE.TextureLoader().load( "<%= asset_path 'metal.png' %>" )});
 
         /*
             CylinderGeometry(radiusTop, radiusBottom, height, radiusSegments, heightSegments, openEnded, thetaStart, thetaLength)
@@ -212,8 +211,6 @@ function render_three_shape(vue_data) {
         var outer_diameter_tee = 500;
         var wall_thickness_tee = (outer_diameter_tee - outer_diameter) / 2;
         var length_tee = 50;
-
-        var material = new THREE.MeshLambertMaterial({color: '#a8b2c1', map: new THREE.TextureLoader().load( "<%= asset_path 'metal.png' %>" )});
 
         /*
             CylinderGeometry(radiusTop, radiusBottom, height, radiusSegments, heightSegments, openEnded, thetaStart, thetaLength)
