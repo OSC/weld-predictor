@@ -95,7 +95,7 @@ function render_three_shape(vue_data) {
         var width_w2 = inchesToPixels(plate_data.dimensions.width_w2);
         var height = inchesToPixels(plate_data.dimensions.thickness);
         var depth = inchesToPixels(plate_data.dimensions.length);
-        var root_gap = vue_data.joint_data.root_gap.present ? inchesToPixels(vue_data.joint_data.root_gap.range) : 0;
+        var root_gap = vue_data.joint_data.root_gap.present && (vue_data.joint_data.selected !== 'bead_on_plate') ? inchesToPixels(vue_data.joint_data.root_gap.range) : 0;
 
         var material = new THREE.MeshLambertMaterial({color: '#a8b2c1', map: new THREE.TextureLoader().load( "<%= asset_path 'metal.png' %>" )});
 
