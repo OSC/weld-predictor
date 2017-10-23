@@ -43,9 +43,11 @@
           <li>
             <%= link_to '<span class="glyphicon glyphicon-plus"></span> Add Simulation'.html_safe, new_simulation_path %>
           </li>
+          <% if Configuration.mesh_upload_enabled? %>
           <li>
             <%= link_to '<span class="glyphicon glyphicon-plus"></span> Add Mesh'.html_safe, new_mesh_path %>
           </li>
+          <% end %>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <% if OodAppkit.routes.wiki && File.exist?(File.join('wiki/Home.md')) %>
@@ -56,9 +58,11 @@
           <li>
             <p class="navbar-text">Logged in as <%= OodSupport::User.new.name %></p>
           </li>
+          <% if Configuration.mesh_upload_enabled? %>
           <li>
             <%= link_to "My Meshes", meshes_path %>
           </li>
+          <% end %>
           <li>
             <%= link_to "My Simulations", root_path %>
           </li>
