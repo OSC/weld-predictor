@@ -179,10 +179,23 @@ function render_three_shape(vue_data) {
     }
 
     function buildPipe(vue_data, scene) {
-        // Tee Joint
-        var outer_diameter = 300;
-        var wall_thickness = 100;
-        var length = 250;
+
+        // Pipe
+        var pipe_data = vue_data.dimension_data.fixture_shapes.find(function (shape) {
+            return shape.value === 'pipe';
+        }, this);
+
+        //dimensions: {
+        //    outer_diameter: 36,
+        //    wall_thickness: 1,
+        //    length_w1: 16,
+        //    length_w2: 16
+        //}
+        var outer_diameter = inchesToPixels(pipe_data.dimensions.outer_diameter);
+        var wall_thickness = inchesToPixels(pipe_data.dimensions.wall_thickness);
+        var length_w1 = inchesToPixels(pipe_data.dimensions.length_w1);
+        var length_w2 = inchesToPixels(pipe_data.dimensions.length_w2);
+        var root_gap = vue_data.joint_data.root_gap.present ? inchesToPixels(vue_data.joint_data.root_gap.range) : 0;
 
         /*
             CylinderGeometry(radiusTop, radiusBottom, height, radiusSegments, heightSegments, openEnded, thetaStart, thetaLength)
@@ -196,10 +209,15 @@ function render_three_shape(vue_data) {
                 thetaStart — Start angle for first segment, default = 0 (three o'clock position).
                 thetaLength — The central angle, often called theta, of the circular sector. The default is 2*Pi, which makes for a complete cylinder.
          */
-        var cube = new THREE.CylinderGeometry(50, 50, 200, 320);
-        cube = new THREE.Mesh( cube, material );
-        cube.position.set(0, 0, 0);
-        scene.add(cube);
+        var pipe1 = new THREE.CylinderGeometry(outer_diameter / 2.0, outer_diameter / 2.0, length_w1, 90);
+        pipe1 = new THREE.Mesh( pipe1, material );
+        pipe1.position.set(0, (length_w1 * 0.5) + (root_gap * 0.5), 0);
+        scene.add(pipe1);
+
+        var pipe2 = new THREE.CylinderGeometry(outer_diameter / 2.0, outer_diameter / 2.0, length_w2, 90);
+        pipe2 = new THREE.Mesh( pipe2, material );
+        pipe2.position.set(0, -(length_w2 * 0.5) + -(root_gap * 0.5), 0);
+        scene.add(pipe2);
     }
 
     function buildTeePipe(vue_data, scene) {
