@@ -61,10 +61,10 @@ $(document).ready(function () {
                         {
                             value: 'pipe', title: 'Pipe',
                             dimensions: {
-                                outer_diameter: 36,
-                                wall_thickness: 1,
-                                length_w1: 16,
-                                length_w2: 16
+                                outer_diameter: 6,
+                                wall_thickness: 0.2,
+                                length_w1: 4,
+                                length_w2: 4
                             },
                             joint_designs: [
                                 'bead_on_plate',
