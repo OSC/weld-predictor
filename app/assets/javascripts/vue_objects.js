@@ -79,7 +79,7 @@ $(document).ready(function () {
                             value: 't_pipe', title: 'T-Pipe',
                             dimensions: {
                                 outer_diameter: 36,
-                                wall_thickness_t1: 0.5,
+                                wall_thickness: 0.5,
                                 flange_thickness_t2: 0.5,
                                 length_w1: 6,
                                 length_w2: 6,
@@ -249,6 +249,18 @@ $(document).ready(function () {
                 }
             },
             methods: {
+
+                validatePipeThickness: function() {
+                    // This method will ensure that a user can not set a pipe's thickness to a number greater than it's radius.
+                    var shape = this.$data.dimension_data.fixture_shapes.find(function (shape) {
+                        return shape.value === this.$data.dimension_data.selected;
+                    }, this);
+                    if ( (shape.value === 'pipe') || (shape.value === 't_pipe') ) {
+                        if (shape.dimensions.wall_thickness > shape.dimensions.outer_diameter) {
+                            shape.dimensions.wall_thickness = shape.dimensions.outer_diameter * 0.5;
+                        }
+                    }
+                },
 
                 compatibleJoint: function() {
                     // This method will select a joint that is compatible with the selected fixture type if the currently selected joint is not compatible.
