@@ -14,7 +14,7 @@ class Simulation < ActiveRecord::Base
   # uploaded files here
   def after_stage(staged_dir)
     # create input.json in the root of the staged directory
-    staged_dir.join("input.json").open("w") { |f| f.write(data) }
+    staged_dir.join("input.json").open("w") { |f| f.write(data.to_json) }
 
     # run substitute.py to do domain specific calculations and substitutions
     # TODO Implement Python functionality
