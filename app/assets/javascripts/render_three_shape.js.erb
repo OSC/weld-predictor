@@ -218,13 +218,32 @@ function render_three_shape(vue_data) {
                 thetaStart — Start angle for first segment, default = 0 (three o'clock position).
                 thetaLength — The central angle, often called theta, of the circular sector. The default is 2*Pi, which makes for a complete cylinder.
          */
-        var pipe1 = new THREE.CylinderGeometry(outer_diameter / 2.0, outer_diameter / 2.0, length_w1, 90);
-        pipe1 = new THREE.Mesh( pipe1, material );
+        var radius = outer_diameter / 2.0;
+        var pipe1 = new THREE.CylinderGeometry(radius, radius, length_w1, 90);
+        var pipe1_bsp = new ThreeBSP( pipe1 );
+
+        var inside_radius = radius - wall_thickness;
+        var pipe1_id = new THREE.CylinderGeometry(inside_radius, inside_radius, length_w1 + 2, 90);
+        var pipe1_id_bsp = new ThreeBSP( pipe1_id );
+
+        var pipe1_sub = pipe1_bsp.subtract(pipe1_id_bsp);
+        var pipe1 = pipe1_sub.toMesh(material);
+
         pipe1.position.set(0, (length_w1 * 0.5) + (root_gap * 0.5), 0);
         scene.add(pipe1);
 
-        var pipe2 = new THREE.CylinderGeometry(outer_diameter / 2.0, outer_diameter / 2.0, length_w2, 90);
-        pipe2 = new THREE.Mesh( pipe2, material );
+
+
+        var pipe2 = new THREE.CylinderGeometry(radius, radius, length_w2, 90);
+        var pipe2_bsp = new ThreeBSP( pipe2 );
+
+        var pipe2_id = new THREE.CylinderGeometry(inside_radius, inside_radius, length_w2 + 2, 90);
+        var pipe2_id_bsp = new ThreeBSP( pipe2_id );
+
+        var pipe2_sub = pipe2_bsp.subtract( pipe2_id_bsp );
+        var pipe2 = pipe2_sub.toMesh( material );
+
+        //pipe2 = new THREE.Mesh( pipe2, material );
         pipe2.position.set(0, -(length_w2 * 0.5) + -(root_gap * 0.5), 0);
         scene.add(pipe2);
     }
