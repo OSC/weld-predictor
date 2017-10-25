@@ -42,6 +42,14 @@ function init_three() {
     material = new THREE.MeshLambertMaterial({color: '#a8b2c1', map: new THREE.TextureLoader().load( "<%= asset_path 'metal.png' %>" )});
 }
 
+// Reset the view to the default state
+function reset_camera() {
+    if (camera !== undefined) {
+        controls.reset();
+        animate();
+    }
+}
+
 function render_three_shape(vue_data) {
 
     if (scene === undefined) {
@@ -252,10 +260,10 @@ function render_three_shape(vue_data) {
         outer_pipe.position.set(0, 0, 0);
         scene.add(outer_pipe);
     }
+}
 
-    function animate() {
-        requestAnimationFrame( animate );
-        controls.update();
-        renderer.render( scene, camera );
-    }
+function animate() {
+    requestAnimationFrame( animate );
+    controls.update();
+    renderer.render( scene, camera );
 }
