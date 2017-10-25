@@ -64,6 +64,11 @@ function render_three_shape(vue_data) {
         }
     }
 
+    // Don't show a root gap when bead on plate selected
+    if (vue_data.joint_data.selected === 'bead_on_plate') {
+        vue_data.joint_data.root_gap.present = false;
+    }
+
     switch(vue_data.dimension_data.selected) {
         case 'plate':
             buildPlate(vue_data, scene);
@@ -107,10 +112,6 @@ function render_three_shape(vue_data) {
         var height = inchesToPixels(plate_data.dimensions.thickness);
         var depth = inchesToPixels(plate_data.dimensions.length);
         var root_gap = vue_data.joint_data.root_gap.present ? inchesToPixels(vue_data.joint_data.root_gap.range) : 0;
-        // Don't show a root gap when bead on plate selected
-        if (vue_data.joint_data.selected === 'bead_on_plate') {
-            root_gap = 0;
-        }
 
         var cube = new THREE.CubeGeometry(width_w1, height, depth);
         cube = new THREE.Mesh( cube, material );
