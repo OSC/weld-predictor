@@ -13,16 +13,6 @@ $(document).ready(function () {
                     walltime_hours: 1
                 },
                 technique_data: {
-                    types: [
-                        { value: 'gmaw', title: 'GMAW' },
-                        { value: 'lbw', title: 'LBW' },
-                        { value: 'hlaw', title: 'HLAW' },
-                        { value: 'pulsed_gmaw', title: 'Pulsed GMAW' },
-                        { value: 'weaved_pulsed_gmaw', title: 'Weaved Pulsed GMAW' },
-                        { value: 'gtaw', title: 'GTAW' },
-                        { value: 'saw', title: 'SAW' },
-                        { value: 'smaw', title: 'SMAW' }
-                    ],
                     selected: 'gmaw'
                 },
                 dimension_data: {
@@ -151,7 +141,7 @@ $(document).ready(function () {
                     },
                     root_gap: {
                         present: false,
-                        range: 0.00
+                        range: 0.10
                     },
                     joint_angle: {
                         alpha: 0.1,

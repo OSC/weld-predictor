@@ -44,7 +44,7 @@
             <div class="form-group">
               <label for="weld-technique">Weld Technique:</label>
               <select v-model="technique_data.selected" class="form-control" id="weld-technique">
-                <option v-for="technique in technique_data.types" v-bind:value="technique.value">
+                <option v-for="technique in techniqueData" v-bind:value="technique.value">
                   {{ technique.title }}
                 </option>
               </select>
