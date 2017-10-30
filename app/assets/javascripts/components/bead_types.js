@@ -43,6 +43,15 @@ Vue.mixin({
                     }
                 }
             ]
+        },
+        beadElliptical: function () {
+            return this.beadTypes.find(type => type.value === 'elliptical');
+        },
+        beadParabolic: function () {
+            return this.beadTypes.find(type => type.value === 'parabolic');
+        },
+        beadComplex: function () {
+            return this.beadTypes.find(type => type.value === 'points');
         }
     }
 });
