@@ -44,7 +44,7 @@
             <div class="form-group">
               <label for="weld-technique">Weld Technique:</label>
               <select v-model="technique_data.selected" class="form-control" id="weld-technique">
-                <option v-for="technique in techniqueData" v-bind:value="technique.value">
+                <option v-for="technique in techniqueTypes" v-bind:value="technique.value">
                   {{ technique.title }}
                 </option>
               </select>
@@ -276,7 +276,7 @@
               <label for="joint-design">Joint Design:</label>
               <select v-model="joint_data.selected" class="form-control" id="joint-design" @change="renderThree();">
                 <option v-for="joint_design in dimension_data.fixture_shapes.find(shape => shape.value === dimension_data.selected).joint_designs" v-bind:value="joint_design" >
-                  {{ joint_data.joint_designs.find(d => d.value === joint_design).title }}
+                  {{ jointDesigns.find(d => d.value === joint_design).title }}
                 </option>
               </select>
               <div v-if="joint_data.selected === 'bead_on_plate'">
@@ -457,7 +457,7 @@
                   <label class="col-md-2 control-label">deg.</label>
                 </div>
               </div>
-              <div v-if="joint_data.joint_designs.find(design => design.value === joint_data.selected).gap">
+              <div v-if="jointDesigns.find(design => design.value === joint_data.selected).gap">
                 <div class="checkbox">
                   <label><input type="checkbox" v-model="joint_data.root_gap.present" @change="renderThree();">Include Root Gap</label>
                 </div>
