@@ -19,8 +19,8 @@ function init_three() {
 
     width = $("#weld-render-view").width();
     height = width * 0.75;
-    renderer = new THREE.WebGLRenderer();
-    renderer.setClearColor( 0x222222 );
+    renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setClearColor( 0xe0e0eb );
     renderer.setPixelRatio( window.devicePixelRatio );
     renderer.setSize( width, height );
     $("#weld-render-view").html( renderer.domElement );
