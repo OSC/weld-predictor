@@ -217,8 +217,19 @@ $(document).ready(function () {
 
                 addWeldPass: function() {
                     // Add a weld pass to the array with default dimensions
-                    var basic_parabolic_bead = this.beadTypes[0];
-                    this.bead_data.beads.push(basic_parabolic_bead);
+                    this.bead_data.beads.push(this.beadParabolic);
+                },
+
+                addBeadParabolic: function () {
+                    this.bead_data.beads.push(this.beadParabolic);
+                },
+
+                addBeadElliptical: function () {
+                    this.bead_data.beads.push(this.beadElliptical);
+                },
+
+                addBeadCustom: function () {
+                    this.bead_data.beads.push(this.beadComplex);
                 },
 
                 renderThree: function() {
