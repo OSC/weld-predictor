@@ -480,7 +480,7 @@
         <div id="collapse-bead-definition" class="panel-collapse collapse">
           <div class="panel-body">
             <label>Number of Beads</label>
-            <input type="number" v-model.number="bead_data.num_beads" class="form-control" min="0">
+            <input type="number" v-model.number="bead_data.beads.length" class="form-control" min="0" disabled>
           </div>
         </div>
       </div>
@@ -540,20 +540,20 @@
               <input v-model.number="procedure_data.inter_pass_temp_C" class="form-control" id="inter-pass-temp-c" type="number" min="1" />
             </div>
             <div class="form-group">
-              <h4 v-if="procedure_data.weld_passes.length > 0">Weld Passes</h4>
+              <h4 v-if="bead_data.beads.length > 0">Weld Passes</h4>
               <table>
-                <tr v-if="procedure_data.weld_passes.length > 0">
+                <tr v-if="bead_data.beads.length > 0">
                   <th></th>
                   <th>Current</th>
                   <th>Voltage</th>
                   <th>TS (ipm)</th>
                   <th></th>
                 </tr>
-                <tr v-for="(pass, key) in procedure_data.weld_passes">
-                  <td>{{ key + 1 }}&nbsp;&nbsp;</td>
-                  <td><input v-model.number="pass.current_A" type="number" style='width:5em' /></td>
-                  <td><input v-model.number="pass.voltage_V" type="number" style='width:5em' /></td>
-                  <td><input v-model.number="pass.travel_ipm" type="number" style='width:4em' /></td>
+                <tr v-for="(pass, key) in bead_data.beads">
+                  <td><small>{{ key + 1 }}</small>&nbsp;</td>
+                  <td><input v-model.number="pass.weld_pass.current_A" type="number" style='width:5em' /></td>
+                  <td><input v-model.number="pass.weld_pass.voltage_V" type="number" style='width:5em' /></td>
+                  <td><input v-model.number="pass.weld_pass.travel_ipm" type="number" style='width:4em' /></td>
                   <td>&nbsp;<span class="fa fa-times" @click="removeWeldPass(key)" aria-hidden="true" style="color:red"></span></td>
                 </tr>
               </table>

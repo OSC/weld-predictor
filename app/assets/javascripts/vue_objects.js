@@ -116,8 +116,48 @@ $(document).ready(function () {
                 },
                 bead_data: {
                     selected: 'parabolic',
-                    beads: {},
-                    num_beads: 0
+                    beads: [
+                        {
+                            value: 'parabolic', title: 'Parabolic',
+                            dimensions: {
+                                x: 0.0,
+                                y: 0.35,
+                                z1: 0.0,
+                                z2: 4.0,
+                                w: 0.3,
+                                a: 0.0,
+                                b: 0.1,
+                                c: 0.0,
+                                d: -0.15,
+                                r: 0.0
+                            },
+                            weld_pass: {
+                                current_A: 200.0,
+                                voltage_V: 22.5,
+                                travel_ipm: 7.5
+                            }
+                        },
+                        {
+                            value: 'parabolic', title: 'Parabolic',
+                            dimensions: {
+                                x: 0.0,
+                                y: 0.35,
+                                z1: 0.0,
+                                z2: 4.0,
+                                w: 0.3,
+                                a: 0.0,
+                                b: 0.1,
+                                c: 0.0,
+                                d: -0.15,
+                                r: 0.0
+                            },
+                            weld_pass: {
+                                current_A: 200.0,
+                                voltage_V: 22.5,
+                                travel_ipm: 7.5
+                            }
+                        }
+                    ]
                 },
                 material_data: {
                     base_material1: {
@@ -134,25 +174,15 @@ $(document).ready(function () {
                     pre_heat_temp_F: 70,
                     pre_heat_temp_C: 21,
                     inter_pass_temp_F: 212,
-                    inter_pass_temp_C: 100,
-                    weld_passes: [
-                        {
-                            current_A: 180,
-                            voltage_V: 19,
-                            travel_ipm: 7.8
-                        },
-                        {
-                            current_A: 200,
-                            voltage_V: 22.5,
-                            travel_ipm: 7.5
-                        }
-                    ]
+                    inter_pass_temp_C: 100
                 },
                 fixture_data: {
                     clamps: [],
                     coolers: [],
                     monitors: []
                 }
+            },
+            watch: {
             },
             methods: {
 
@@ -182,17 +212,13 @@ $(document).ready(function () {
 
                 removeWeldPass: function(key) {
                     // Remove a weld pass from the array at the specified index
-                    this.$data.procedure_data.weld_passes.splice(key, 1);
+                    this.bead_data.beads.splice(key, 1);
                 },
 
                 addWeldPass: function() {
                     // Add a weld pass to the array with default dimensions
-                    var basic_weld_pass = {
-                        current_A: 200.0,
-                        voltage_V: 22.5,
-                        travel_ipm: 7.5
-                    };
-                    this.$data.procedure_data.weld_passes.push(basic_weld_pass);
+                    var basic_parabolic_bead = this.beadTypes[0];
+                    this.bead_data.beads.push(basic_parabolic_bead);
                 },
 
                 renderThree: function() {
