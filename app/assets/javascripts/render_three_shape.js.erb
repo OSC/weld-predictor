@@ -195,10 +195,10 @@ function render_three_shape(vue_data) {
         }, this);
 
         //dimensions: {
-        //    outer_diameter: 36,
-        //    wall_thickness: 1,
-        //    length_w1: 16,
-        //    length_w2: 16
+        //    outer_diameter: 6,
+        //    wall_thickness: 0.2,
+        //    length_w1: 4,
+        //    length_w2: 4
         //}
         var outer_diameter = inchesToPixels(pipe_data.dimensions.outer_diameter);
         var wall_thickness = inchesToPixels(pipe_data.dimensions.wall_thickness);
@@ -249,7 +249,27 @@ function render_three_shape(vue_data) {
     }
 
     function buildTeePipe(vue_data, scene) {
-        // Tee Joint
+        // T-Pipe Joint
+        // Pipe
+        var pipe_data = vue_data.dimension_data.fixture_shapes.find(function (shape) {
+            return shape.value === 't_pipe';
+        }, this);
+
+        //dimensions: {
+        //    outer_diameter: 6,
+        //    wall_thickness: 0.5,
+        //    flange_thickness_t2: 0.5,
+        //    length_w1: 6,
+        //    length_w2: 6,
+        //    flange_height_h: 2
+        //}
+        var outer_diameter = inchesToPixels(pipe_data.dimensions.outer_diameter);
+        var wall_thickness = inchesToPixels(pipe_data.dimensions.wall_thickness);
+        var flange_thickness = inchesToPixels(pipe_data.dimensions.flange_thickness_t2);
+        var length_w1 = inchesToPixels(pipe_data.dimensions.length_w1);
+        var length_w2 = inchesToPixels(pipe_data.dimensions.length_w2);
+        var root_gap = vue_data.joint_data.root_gap.present ? inchesToPixels(vue_data.joint_data.root_gap.range) : 0;
+
         var outer_diameter = 300;
         var wall_thickness = 100;
         var length = 250;
