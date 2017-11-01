@@ -68,7 +68,7 @@ $(document).ready(function () {
                         {
                             value: 't_pipe', title: 'T-Pipe',
                             dimensions: {
-                                outer_diameter: 36,
+                                outer_diameter: 6,
                                 wall_thickness: 0.5,
                                 flange_thickness_t2: 0.5,
                                 length_w1: 6,
