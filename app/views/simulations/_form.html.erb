@@ -30,16 +30,16 @@
           <div class="panel-body">
             <div class="form-group">
               <label for="username">User Name:</label>
-              <input v-model="start_panel_data.user_name" class="form-control" id="username" disabled/>
+              <input v-model="start_panel_data.user_name" class="form-control input-sm" id="username" disabled/>
             </div>
             <div class="form-group">
               <label for="eweld_job_description">Description:</label>
-              <input v-model="start_panel_data.job_description" class="form-control" id="eweld_job_description" placeholder="Provide Job Description"
+              <input v-model="start_panel_data.job_description" class="form-control input-sm" id="eweld_job_description" placeholder="Provide Job Description"
                      maxlength="50" />
             </div>
             <div class="form-group">
               <label for="walltime_requested">Walltime (1 to 10 hours):</label>
-              <input v-model.number="start_panel_data.walltime_hours" class="form-control" id="walltime_requested" type="number" value="1" min="1" max="10" />
+              <input v-model.number="start_panel_data.walltime_hours" class="form-control input-sm" id="walltime_requested" type="number" value="1" min="1" max="10" />
             </div>
             <div class="form-group">
               <label for="weld-technique">Weld Technique:</label>
@@ -70,28 +70,28 @@
                 <div class="form-group row">
                   <label class="col-md-4 control-label">Width (W1)</label>
                   <div class="col-md-6">
-                    <input type="number" step="0.1" class="form-control" @change="renderThree();" v-model.number="dimension_data.fixture_shapes.find(shape => shape.value === 'plate').dimensions.width_w1">
+                    <input type="number" step="0.1" class="form-control input-sm" @change="renderThree();" v-model.number="dimension_data.fixture_shapes.find(shape => shape.value === 'plate').dimensions.width_w1">
                   </div>
                   <label class="col-md-2 control-label">in.</label>
                 </div>
                 <div class="form-group row">
                   <label class="col-md-4 control-label">Width (W2)</label>
                   <div class="col-md-6">
-                    <input type="number" step="0.1" class="form-control" @change="renderThree();" v-model.number="dimension_data.fixture_shapes.find(shape => shape.value === 'plate').dimensions.width_w2">
+                    <input type="number" step="0.1" class="form-control input-sm" @change="renderThree();" v-model.number="dimension_data.fixture_shapes.find(shape => shape.value === 'plate').dimensions.width_w2">
                   </div>
                   <label class="col-md-2 control-label">in.</label>
                 </div>
                 <div class="form-group row">
                   <label class="col-md-4 control-label">Thickness</label>
                   <div class="col-md-6">
-                    <input type="number" step="0.1" class="form-control" @change="renderThree();" v-model.number="dimension_data.fixture_shapes.find(shape => shape.value === 'plate').dimensions.thickness">
+                    <input type="number" step="0.1" class="form-control input-sm" @change="renderThree();" v-model.number="dimension_data.fixture_shapes.find(shape => shape.value === 'plate').dimensions.thickness">
                   </div>
                   <label class="col-md-2 control-label">in.</label>
                 </div>
                 <div class="form-group row">
                   <label class="col-md-4 control-label">Length</label>
                   <div class="col-md-6">
-                    <input type="number" step="0.1" class="form-control" @change="renderThree();" v-model.number="dimension_data.fixture_shapes.find(shape => shape.value === 'plate').dimensions.length">
+                    <input type="number" step="0.1" class="form-control input-sm" @change="renderThree();" v-model.number="dimension_data.fixture_shapes.find(shape => shape.value === 'plate').dimensions.length">
                   </div>
                   <label class="col-md-2 control-label">in.</label>
                 </div>
@@ -101,42 +101,42 @@
                 <div class="form-group row">
                   <label class="col-md-4 control-label">Thickness (T1)</label>
                   <div class="col-md-6">
-                    <input type="number" step="0.1" class="form-control" @change="renderThree();" v-model.number="dimension_data.fixture_shapes.find(shape => shape.value === 't_plate').dimensions.thickness_t1">
+                    <input type="number" step="0.1" class="form-control input-sm" @change="renderThree();" v-model.number="dimension_data.fixture_shapes.find(shape => shape.value === 't_plate').dimensions.thickness_t1">
                   </div>
                   <label class="col-md-2 control-label">in.</label>
                 </div>
                 <div class="form-group row">
                   <label class="col-md-4 control-label">Thickness (T2)</label>
                   <div class="col-md-6">
-                    <input type="number" step="0.1" class="form-control" @change="renderThree();" v-model.number="dimension_data.fixture_shapes.find(shape => shape.value === 't_plate').dimensions.thickness_t2">
+                    <input type="number" step="0.1" class="form-control input-sm" @change="renderThree();" v-model.number="dimension_data.fixture_shapes.find(shape => shape.value === 't_plate').dimensions.thickness_t2">
                   </div>
                   <label class="col-md-2 control-label">in.</label>
                 </div>
                 <div class="form-group row">
                   <label class="col-md-4 control-label">Width (W1)</label>
                   <div class="col-md-6">
-                    <input type="number" step="0.1" class="form-control" @change="renderThree();" v-model.number="dimension_data.fixture_shapes.find(shape => shape.value === 't_plate').dimensions.width_w1">
+                    <input type="number" step="0.1" class="form-control input-sm" @change="renderThree();" v-model.number="dimension_data.fixture_shapes.find(shape => shape.value === 't_plate').dimensions.width_w1">
                   </div>
                   <label class="col-md-2 control-label">in.</label>
                 </div>
                 <div class="form-group row">
                   <label class="col-md-4 control-label">Width (W2)</label>
                   <div class="col-md-6">
-                    <input type="number" step="0.1" class="form-control" @change="renderThree();" v-model.number="dimension_data.fixture_shapes.find(shape => shape.value === 't_plate').dimensions.width_w2">
+                    <input type="number" step="0.1" class="form-control input-sm" @change="renderThree();" v-model.number="dimension_data.fixture_shapes.find(shape => shape.value === 't_plate').dimensions.width_w2">
                   </div>
                   <label class="col-md-2 control-label">in.</label>
                 </div>
                 <div class="form-group row">
                   <label class="col-md-4 control-label">Length</label>
                   <div class="col-md-6">
-                    <input type="number" step="0.1" class="form-control" @change="renderThree();" v-model.number="dimension_data.fixture_shapes.find(shape => shape.value === 't_plate').dimensions.length_l">
+                    <input type="number" step="0.1" class="form-control input-sm" @change="renderThree();" v-model.number="dimension_data.fixture_shapes.find(shape => shape.value === 't_plate').dimensions.length_l">
                   </div>
                   <label class="col-md-2 control-label">in.</label>
                 </div>
                 <div class="form-group row">
                   <label class="col-md-4 control-label">Height</label>
                   <div class="col-md-6">
-                    <input type="number" step="0.1" class="form-control" @change="renderThree();" v-model.number="dimension_data.fixture_shapes.find(shape => shape.value === 't_plate').dimensions.height_h">
+                    <input type="number" step="0.1" class="form-control input-sm" @change="renderThree();" v-model.number="dimension_data.fixture_shapes.find(shape => shape.value === 't_plate').dimensions.height_h">
                   </div>
                   <label class="col-md-2 control-label">in.</label>
                 </div>
@@ -146,28 +146,28 @@
                 <div class="form-group row">
                   <label class="col-md-4 control-label">Outer Diameter</label>
                   <div class="col-md-6">
-                    <input type="number" step="0.1" class="form-control" @change="validatePipeThickness(); renderThree();" v-model.number="dimension_data.fixture_shapes.find(shape => shape.value === 'pipe').dimensions.outer_diameter">
+                    <input type="number" step="0.1" class="form-control input-sm" @change="validatePipeThickness(); renderThree();" v-model.number="dimension_data.fixture_shapes.find(shape => shape.value === 'pipe').dimensions.outer_diameter">
                   </div>
                   <label class="col-md-2 control-label">in.</label>
                 </div>
                 <div class="form-group row">
                   <label class="col-md-4 control-label">Wall Thickness</label>
                   <div class="col-md-6">
-                    <input type="number" step="0.1" class="form-control" @change="validatePipeThickness(); renderThree();" v-model.number="dimension_data.fixture_shapes.find(shape => shape.value === 'pipe').dimensions.wall_thickness">
+                    <input type="number" step="0.1" class="form-control input-sm" @change="validatePipeThickness(); renderThree();" v-model.number="dimension_data.fixture_shapes.find(shape => shape.value === 'pipe').dimensions.wall_thickness">
                   </div>
                   <label class="col-md-2 control-label">in.</label>
                 </div>
                 <div class="form-group row">
                   <label class="col-md-4 control-label">Length (W1)</label>
                   <div class="col-md-6">
-                    <input type="number" step="0.1" class="form-control" @change="renderThree();" v-model.number="dimension_data.fixture_shapes.find(shape => shape.value === 'pipe').dimensions.length_w1">
+                    <input type="number" step="0.1" class="form-control input-sm" @change="renderThree();" v-model.number="dimension_data.fixture_shapes.find(shape => shape.value === 'pipe').dimensions.length_w1">
                   </div>
                   <label class="col-md-2 control-label">in.</label>
                 </div>
                 <div class="form-group row">
                   <label class="col-md-4 control-label">Length (W2)</label>
                   <div class="col-md-6">
-                    <input type="number" step="0.1" class="form-control" @change="renderThree();" v-model.number="dimension_data.fixture_shapes.find(shape => shape.value === 'pipe').dimensions.length_w2">
+                    <input type="number" step="0.1" class="form-control input-sm" @change="renderThree();" v-model.number="dimension_data.fixture_shapes.find(shape => shape.value === 'pipe').dimensions.length_w2">
                   </div>
                   <label class="col-md-2 control-label">in.</label>
                 </div>
@@ -177,42 +177,42 @@
                 <div class="form-group row">
                   <label class="col-md-4 control-label">Outer Diameter</label>
                   <div class="col-md-6">
-                    <input type="number" step="0.1" class="form-control" @change="validatePipeThickness(); renderThree();" v-model.number="dimension_data.fixture_shapes.find(shape => shape.value === 't_pipe').dimensions.outer_diameter">
+                    <input type="number" step="0.1" class="form-control input-sm" @change="validatePipeThickness(); renderThree();" v-model.number="dimension_data.fixture_shapes.find(shape => shape.value === 't_pipe').dimensions.outer_diameter">
                   </div>
                   <label class="col-md-2 control-label">in.</label>
                 </div>
                 <div class="form-group row">
                   <label class="col-md-4 control-label">Wall Thickness (T1)</label>
                   <div class="col-md-6">
-                    <input type="number" step="0.1" class="form-control" @change="validatePipeThickness(); renderThree();" v-model.number="dimension_data.fixture_shapes.find(shape => shape.value === 't_pipe').dimensions.wall_thickness">
+                    <input type="number" step="0.1" class="form-control input-sm" @change="validatePipeThickness(); renderThree();" v-model.number="dimension_data.fixture_shapes.find(shape => shape.value === 't_pipe').dimensions.wall_thickness">
                   </div>
                   <label class="col-md-2 control-label">in.</label>
                 </div>
                 <div class="form-group row">
                   <label class="col-md-4 control-label">Flange Thickness (T2)</label>
                   <div class="col-md-6">
-                    <input type="number" step="0.1" class="form-control" @change="renderThree();" v-model.number="dimension_data.fixture_shapes.find(shape => shape.value === 't_pipe').dimensions.flange_thickness_t2">
+                    <input type="number" step="0.1" class="form-control input-sm" @change="renderThree();" v-model.number="dimension_data.fixture_shapes.find(shape => shape.value === 't_pipe').dimensions.flange_thickness_t2">
                   </div>
                   <label class="col-md-2 control-label">in.</label>
                 </div>
                 <div class="form-group row">
                   <label class="col-md-4 control-label">Length (W1)</label>
                   <div class="col-md-6">
-                    <input type="number" step="0.1" class="form-control" @change="renderThree();" v-model.number="dimension_data.fixture_shapes.find(shape => shape.value === 't_pipe').dimensions.length_w1">
+                    <input type="number" step="0.1" class="form-control input-sm" @change="renderThree();" v-model.number="dimension_data.fixture_shapes.find(shape => shape.value === 't_pipe').dimensions.length_w1">
                   </div>
                   <label class="col-md-2 control-label">in.</label>
                 </div>
                 <div class="form-group row">
                   <label class="col-md-4 control-label">Length (W2)</label>
                   <div class="col-md-6">
-                    <input type="number" step="0.1" class="form-control" @change="renderThree();" v-model.number="dimension_data.fixture_shapes.find(shape => shape.value === 't_pipe').dimensions.length_w2">
+                    <input type="number" step="0.1" class="form-control input-sm" @change="renderThree();" v-model.number="dimension_data.fixture_shapes.find(shape => shape.value === 't_pipe').dimensions.length_w2">
                   </div>
                   <label class="col-md-2 control-label">in.</label>
                 </div>
                 <div class="form-group row">
                   <label class="col-md-4 control-label">Flange Height (H)</label>
                   <div class="col-md-6">
-                    <input type="number" step="0.1" class="form-control" @change="renderThree();" v-model.number="dimension_data.fixture_shapes.find(shape => shape.value === 't_pipe').dimensions.flange_height_h">
+                    <input type="number" step="0.1" class="form-control input-sm" @change="renderThree();" v-model.number="dimension_data.fixture_shapes.find(shape => shape.value === 't_pipe').dimensions.flange_height_h">
                   </div>
                   <label class="col-md-2 control-label">in.</label>
                 </div>
@@ -222,42 +222,42 @@
                 <div class="form-group row">
                   <label class="col-md-4 control-label">Thickness (T1)</label>
                   <div class="col-md-6">
-                    <input type="number" step="0.1" class="form-control" @change="renderThree();" v-model.number="dimension_data.fixture_shapes.find(shape => shape.value === 'lap_joint').dimensions.thickness_t1">
+                    <input type="number" step="0.1" class="form-control input-sm" @change="renderThree();" v-model.number="dimension_data.fixture_shapes.find(shape => shape.value === 'lap_joint').dimensions.thickness_t1">
                   </div>
                   <label class="col-md-2 control-label">in.</label>
                 </div>
                 <div class="form-group row">
                   <label class="col-md-4 control-label">Thickness (T2)</label>
                   <div class="col-md-6">
-                    <input type="number" step="0.1" class="form-control" @change="renderThree();" v-model.number="dimension_data.fixture_shapes.find(shape => shape.value === 'lap_joint').dimensions.thickness_t2">
+                    <input type="number" step="0.1" class="form-control input-sm" @change="renderThree();" v-model.number="dimension_data.fixture_shapes.find(shape => shape.value === 'lap_joint').dimensions.thickness_t2">
                   </div>
                   <label class="col-md-2 control-label">in.</label>
                 </div>
                 <div class="form-group row">
                   <label class="col-md-4 control-label">Width (W1)</label>
                   <div class="col-md-6">
-                    <input type="number" step="0.1" class="form-control" @change="renderThree();" v-model.number="dimension_data.fixture_shapes.find(shape => shape.value === 'lap_joint').dimensions.width_w1">
+                    <input type="number" step="0.1" class="form-control input-sm" @change="renderThree();" v-model.number="dimension_data.fixture_shapes.find(shape => shape.value === 'lap_joint').dimensions.width_w1">
                   </div>
                   <label class="col-md-2 control-label">in.</label>
                 </div>
                 <div class="form-group row">
                   <label class="col-md-4 control-label">Width (W2)</label>
                   <div class="col-md-6">
-                    <input type="number" step="0.1" class="form-control" @change="renderThree();" v-model.number="dimension_data.fixture_shapes.find(shape => shape.value === 'lap_joint').dimensions.width_w2">
+                    <input type="number" step="0.1" class="form-control input-sm" @change="renderThree();" v-model.number="dimension_data.fixture_shapes.find(shape => shape.value === 'lap_joint').dimensions.width_w2">
                   </div>
                   <label class="col-md-2 control-label">in.</label>
                 </div>
                 <div class="form-group row">
                   <label class="col-md-4 control-label">Overlap</label>
                   <div class="col-md-6">
-                    <input type="number" step="0.1" class="form-control" @change="renderThree();" v-model.number="dimension_data.fixture_shapes.find(shape => shape.value === 'lap_joint').dimensions.overlap">
+                    <input type="number" step="0.1" class="form-control input-sm" @change="renderThree();" v-model.number="dimension_data.fixture_shapes.find(shape => shape.value === 'lap_joint').dimensions.overlap">
                   </div>
                   <label class="col-md-2 control-label">in.</label>
                 </div>
                 <div class="form-group row">
                   <label class="col-md-4 control-label">Length</label>
                   <div class="col-md-6">
-                    <input type="number" step="0.1" class="form-control" @change="renderThree();" v-model.number="dimension_data.fixture_shapes.find(shape => shape.value === 'lap_joint').dimensions.length">
+                    <input type="number" step="0.1" class="form-control input-sm" @change="renderThree();" v-model.number="dimension_data.fixture_shapes.find(shape => shape.value === 'lap_joint').dimensions.length">
                   </div>
                   <label class="col-md-2 control-label">in.</label>
                 </div>
@@ -287,14 +287,14 @@
                 <div class="form-group row">
                   <label class="col-md-4 control-label">a</label>
                   <div class="col-md-6">
-                    <input type="number" class="form-control" v-model.number="joint_data.dimensions.a">
+                    <input type="number" class="form-control input-sm" v-model.number="joint_data.dimensions.a">
                   </div>
                   <label class="col-md-2 control-label">in.</label>
                 </div>
                 <div class="form-group row">
                   <label class="col-md-4 control-label">β</label>
                   <div class="col-md-6">
-                    <input type="number" class="form-control" v-model.number="joint_data.dimensions.beta">
+                    <input type="number" class="form-control input-sm" v-model.number="joint_data.dimensions.beta">
                   </div>
                   <label class="col-md-2 control-label">deg.</label>
                 </div>
@@ -304,30 +304,30 @@
                 <div class="form-group row">
                   <label class="col-md-4 control-label">a</label>
                   <div class="col-md-6">
-                    <input type="number" class="form-control" v-model.number="joint_data.dimensions.a">
+                    <input type="number" class="form-control input-sm" v-model.number="joint_data.dimensions.a">
                   </div>
                   <label class="col-md-2 control-label">in.</label>
                 </div>
                 <div class="form-group row">
                   <label class="col-md-4 control-label">b</label>
                   <div class="col-md-6">
-                    <input type="number" class="form-control" v-model.number="joint_data.dimensions.b">
+                    <input type="number" class="form-control input-sm" v-model.number="joint_data.dimensions.b">
                   </div>
-                  <label class="col-md-2 control-label">in.</label>
+                  <label class="col-md-2 control-label input-sm">in.</label>
                 </div>
                 <div class="form-group row">
-                  <label class="col-md-4 control-label">α</label>
+                  <label class="col-md-4 control-label input-sm">α</label>
                   <div class="col-md-6">
-                    <input type="number" class="form-control" v-model.number="joint_data.dimensions.alpha">
+                    <input type="number" class="form-control input-sm" v-model.number="joint_data.dimensions.alpha">
                   </div>
-                  <label class="col-md-2 control-label">deg.</label>
+                  <label class="col-md-2 control-label input-sm">deg.</label>
                 </div>
                 <div class="form-group row">
-                  <label class="col-md-4 control-label">β</label>
+                  <label class="col-md-4 control-label input-sm">β</label>
                   <div class="col-md-6">
-                    <input type="number" class="form-control" v-model.number="joint_data.dimensions.beta">
+                    <input type="number" class="form-control input-sm" v-model.number="joint_data.dimensions.beta">
                   </div>
-                  <label class="col-md-2 control-label">deg.</label>
+                  <label class="col-md-2 control-label input-sm">deg.</label>
                 </div>
               </div>
               <div v-if="joint_data.selected === 'j_groove'">
@@ -335,28 +335,28 @@
                 <div class="form-group row">
                   <label class="col-md-4 control-label">a</label>
                   <div class="col-md-6">
-                    <input type="number" class="form-control" v-model.number="joint_data.dimensions.a">
+                    <input type="number" class="form-control input-sm" v-model.number="joint_data.dimensions.a">
                   </div>
                   <label class="col-md-2 control-label">in.</label>
                 </div>
                 <div class="form-group row">
                   <label class="col-md-4 control-label">b</label>
                   <div class="col-md-6">
-                    <input type="number" class="form-control" v-model.number="joint_data.dimensions.b">
+                    <input type="number" class="form-control input-sm" v-model.number="joint_data.dimensions.b">
                   </div>
                   <label class="col-md-2 control-label">in.</label>
                 </div>
                 <div class="form-group row">
                   <label class="col-md-4 control-label">r</label>
                   <div class="col-md-6">
-                    <input type="number" class="form-control" v-model.number="joint_data.dimensions.r">
+                    <input type="number" class="form-control input-sm" v-model.number="joint_data.dimensions.r">
                   </div>
                   <label class="col-md-2 control-label">in.</label>
                 </div>
                 <div class="form-group row">
                   <label class="col-md-4 control-label">β</label>
                   <div class="col-md-6">
-                    <input type="number" class="form-control" v-model.number="joint_data.dimensions.beta">
+                    <input type="number" class="form-control input-sm" v-model.number="joint_data.dimensions.beta">
                   </div>
                   <label class="col-md-2 control-label">deg.</label>
                 </div>
@@ -366,28 +366,28 @@
                 <div class="form-group row">
                   <label class="col-md-4 control-label">a</label>
                   <div class="col-md-6">
-                    <input type="number" class="form-control" v-model.number="joint_data.dimensions.a">
+                    <input type="number" class="form-control input-sm" v-model.number="joint_data.dimensions.a">
                   </div>
                   <label class="col-md-2 control-label">in.</label>
                 </div>
                 <div class="form-group row">
                   <label class="col-md-4 control-label">b</label>
                   <div class="col-md-6">
-                    <input type="number" class="form-control" v-model.number="joint_data.dimensions.b">
+                    <input type="number" class="form-control input-sm" v-model.number="joint_data.dimensions.b">
                   </div>
                   <label class="col-md-2 control-label">in.</label>
                 </div>
                 <div class="form-group row">
                   <label class="col-md-4 control-label">r</label>
                   <div class="col-md-6">
-                    <input type="number" class="form-control" v-model.number="joint_data.dimensions.r">
+                    <input type="number" class="form-control input-sm" v-model.number="joint_data.dimensions.r">
                   </div>
                   <label class="col-md-2 control-label">in.</label>
                 </div>
                 <div class="form-group row">
                   <label class="col-md-4 control-label">β</label>
                   <div class="col-md-6">
-                    <input type="number" class="form-control" v-model.number="joint_data.dimensions.beta">
+                    <input type="number" class="form-control input-sm" v-model.number="joint_data.dimensions.beta">
                   </div>
                   <label class="col-md-2 control-label">deg.</label>
                 </div>
@@ -397,14 +397,14 @@
                 <div class="form-group row">
                   <label class="col-md-4 control-label">a</label>
                   <div class="col-md-6">
-                    <input type="number" class="form-control" v-model.number="joint_data.dimensions.a">
+                    <input type="number" class="form-control input-sm" v-model.number="joint_data.dimensions.a">
                   </div>
                   <label class="col-md-2 control-label">in.</label>
                 </div>
                 <div class="form-group row">
                   <label class="col-md-4 control-label">β</label>
                   <div class="col-md-6">
-                    <input type="number" class="form-control" v-model.number="joint_data.dimensions.beta">
+                    <input type="number" class="form-control input-sm" v-model.number="joint_data.dimensions.beta">
                   </div>
                   <label class="col-md-2 control-label">deg.</label>
                 </div>
@@ -414,28 +414,28 @@
                 <div class="form-group row">
                   <label class="col-md-4 control-label">a</label>
                   <div class="col-md-6">
-                    <input type="number" class="form-control" v-model.number="joint_data.dimensions.a">
+                    <input type="number" class="form-control input-sm" v-model.number="joint_data.dimensions.a">
                   </div>
                   <label class="col-md-2 control-label">in.</label>
                 </div>
                 <div class="form-group row">
                   <label class="col-md-4 control-label">b</label>
                   <div class="col-md-6">
-                    <input type="number" class="form-control" v-model.number="joint_data.dimensions.b">
+                    <input type="number" class="form-control input-sm" v-model.number="joint_data.dimensions.b">
                   </div>
                   <label class="col-md-2 control-label">in.</label>
                 </div>
                 <div class="form-group row">
                   <label class="col-md-4 control-label">α</label>
                   <div class="col-md-6">
-                    <input type="number" class="form-control" v-model.number="joint_data.dimensions.alpha">
+                    <input type="number" class="form-control input-sm" v-model.number="joint_data.dimensions.alpha">
                   </div>
                   <label class="col-md-2 control-label">deg.</label>
                 </div>
                 <div class="form-group row">
                   <label class="col-md-4 control-label">β</label>
                   <div class="col-md-6">
-                    <input type="number" class="form-control" v-model.number="joint_data.dimensions.beta">
+                    <input type="number" class="form-control input-sm" v-model.number="joint_data.dimensions.beta">
                   </div>
                   <label class="col-md-2 control-label">deg.</label>
                 </div>
@@ -445,14 +445,14 @@
                 <div class="form-group row">
                   <label class="col-md-4 control-label">a</label>
                   <div class="col-md-6">
-                    <input type="number" class="form-control" v-model.number="joint_data.dimensions.a">
+                    <input type="number" class="form-control input-sm" v-model.number="joint_data.dimensions.a">
                   </div>
                   <label class="col-md-2 control-label">in.</label>
                 </div>
                 <div class="form-group row">
                   <label class="col-md-4 control-label">α</label>
                   <div class="col-md-6">
-                    <input type="number" class="form-control" v-model.number="joint_data.dimensions.alpha">
+                    <input type="number" class="form-control input-sm" v-model.number="joint_data.dimensions.alpha">
                   </div>
                   <label class="col-md-2 control-label">deg.</label>
                 </div>
@@ -464,7 +464,7 @@
                 <div class="form-group row">
                   <label class="col-md-4 control-label">g</label>
                   <div class="col-md-6">
-                    <input v-model.number="joint_data.root_gap.range"  @change="renderThree();" class="form-control" id="root-gap-val" :disabled="joint_data.root_gap.present == 0" step="0.01" type="number" />
+                    <input v-model.number="joint_data.root_gap.range"  @change="renderThree();" class="form-control input-sm" id="root-gap-val" :disabled="joint_data.root_gap.present == 0" step="0.01" type="number" />
                   </div>
                   <label class="col-md-2 control-label">in.</label>
                 </div>
@@ -479,10 +479,15 @@
         </div>
         <div id="collapse-bead-definition" class="panel-collapse collapse">
           <div class="panel-body">
-            <label>Number of Beads</label>
-            <input type="number" v-model.number="bead_data.beads.length" class="form-control" min="0" disabled>
+            <h3 class="text-center" v-if="bead_data.beads.length === 1">{{ bead_data.beads.length }} Bead</h3>
+            <h3 class="text-center" v-else>{{ bead_data.beads.length }} Beads</h3>
+            <div class="btn-group-vertical btn-block" style="width: 100%; margin-top: 1em;">
+              <button class="btn btn-primary" @click="addBeadParabolic"><span class="fa fa-plus"></span> Add Parabolic Bead</button>
+              <button class="btn btn-primary" @click="addBeadElliptical"><span class="fa fa-plus"></span> Add Elliptical Bead</button>
+              <button class="btn btn-primary" @click="addBeadCustom"><span class="fa fa-plus"></span> Add Custom Bead</button>
+            </div>
             <div>
-              <h4 v-if="bead_data.beads.length > 0">Bead Types</h4>
+              <h5 v-if="bead_data.beads.length > 0">Bead Types</h5>
               <table style="width: 100%;">
                 <tr>
                   <th></th>
@@ -495,11 +500,6 @@
                   <td>&nbsp;<span class="fa fa-times" @click="removeWeldPass(key)" aria-hidden="true" style="color:red"></span></td>
                 </tr>
               </table>
-            </div>
-            <div class="btn-group-vertical btn-block" style="width: 100%; margin-top: 1em;">
-              <button class="btn btn-primary" @click="addBeadParabolic"><span class="fa fa-plus"></span> Add Parabolic Bead</button>
-              <button class="btn btn-primary" @click="addBeadElliptical"><span class="fa fa-plus"></span> Add Elliptical Bead</button>
-              <button class="btn btn-primary" @click="addBeadCustom"><span class="fa fa-plus"></span> Add Custom Bead</button>
             </div>
           </div>
         </div>
@@ -545,19 +545,19 @@
           <div class="panel-body">
             <div class="form-group">
               <label for="pre-heat-temp-f">Pre-Heat Temp F:</label>
-              <input v-model.number="procedure_data.pre_heat_temp_F" class="form-control" id="pre-heat-temp-f" type="number" min="1" />
+              <input v-model.number="procedure_data.pre_heat_temp_F" class="form-control input-sm" id="pre-heat-temp-f" type="number" min="1" />
             </div>
             <div class="form-group">
               <label for="pre-heat-temp-c">Pre-Heat Temp C:</label>
-              <input v-model.number="procedure_data.pre_heat_temp_C" class="form-control" id="pre-heat-temp-c" type="number" min="1" />
+              <input v-model.number="procedure_data.pre_heat_temp_C" class="form-control input-sm" id="pre-heat-temp-c" type="number" min="1" />
             </div>
             <div class="form-group">
               <label for="inter-pass-temp-f">Inter-Pass Temp F:</label>
-              <input v-model.number="procedure_data.inter_pass_temp_F" class="form-control" id="inter-pass-temp-f" type="number" min="1" />
+              <input v-model.number="procedure_data.inter_pass_temp_F" class="form-control input-sm" id="inter-pass-temp-f" type="number" min="1" />
             </div>
             <div class="form-group">
               <label for="inter-pass-temp-c">Inter-Pass Temp C:</label>
-              <input v-model.number="procedure_data.inter_pass_temp_C" class="form-control" id="inter-pass-temp-c" type="number" min="1" />
+              <input v-model.number="procedure_data.inter_pass_temp_C" class="form-control input-sm" id="inter-pass-temp-c" type="number" min="1" />
             </div>
             <div class="form-group">
               <h4 v-if="bead_data.beads.length > 0">Weld Passes</h4>
