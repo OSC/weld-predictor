@@ -192,7 +192,7 @@ $(document).ready(function () {
                         return shape.value === this.$data.dimension_data.selected;
                     }, this);
                     if ( (shape.value === "pipe") || (shape.value === "t_pipe") ) {
-                        if (shape.dimensions.wall_thickness > shape.dimensions.outer_diameter) {
+                        if (shape.dimensions.wall_thickness > (shape.dimensions.outer_diameter / 2)) {
                             shape.dimensions.wall_thickness = shape.dimensions.outer_diameter * 0.5;
                         }
                     }

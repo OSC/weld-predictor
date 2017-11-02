@@ -223,11 +223,14 @@ function render_three_shape(vue_data) {
         var pipe1_bsp = new ThreeBSP( pipe1 );
 
         var inside_radius = radius - wall_thickness;
-        var pipe1_id = new THREE.CylinderGeometry(inside_radius, inside_radius, length_w1 + 2, 90);
-        var pipe1_id_bsp = new ThreeBSP( pipe1_id );
 
-        var pipe1_sub = pipe1_bsp.subtract(pipe1_id_bsp);
-        var pipe1 = pipe1_sub.toMesh(material);
+        if (inside_radius > 0) {
+            var pipe1_id = new THREE.CylinderGeometry(inside_radius, inside_radius, length_w1 + 2, 90);
+            var pipe1_id_bsp = new ThreeBSP( pipe1_id );
+
+            pipe1_bsp = pipe1_bsp.subtract(pipe1_id_bsp);
+        }
+        var pipe1 = pipe1_bsp.toMesh(material);
 
         pipe1.position.set(0, (length_w1 * 0.5) + (root_gap * 0.5), 0);
         scene.add(pipe1);
@@ -237,11 +240,14 @@ function render_three_shape(vue_data) {
         var pipe2 = new THREE.CylinderGeometry(radius, radius, length_w2, 90);
         var pipe2_bsp = new ThreeBSP( pipe2 );
 
-        var pipe2_id = new THREE.CylinderGeometry(inside_radius, inside_radius, length_w2 + 2, 90);
-        var pipe2_id_bsp = new ThreeBSP( pipe2_id );
+        if (inside_radius > 0) {
+            var pipe2_id = new THREE.CylinderGeometry(inside_radius, inside_radius, length_w2 + 2, 90);
+            var pipe2_id_bsp = new ThreeBSP( pipe2_id );
 
-        var pipe2_sub = pipe2_bsp.subtract( pipe2_id_bsp );
-        var pipe2 = pipe2_sub.toMesh( material );
+            pipe2_bsp = pipe2_bsp.subtract( pipe2_id_bsp );
+        }
+
+        var pipe2 = pipe2_bsp.toMesh( material );
 
         //pipe2 = new THREE.Mesh( pipe2, material );
         pipe2.position.set(0, -(length_w2 * 0.5) + -(root_gap * 0.5), 0);
@@ -289,11 +295,13 @@ function render_three_shape(vue_data) {
         var pipe1_bsp = new ThreeBSP( pipe1 );
 
         var inside_radius = radius_od - wall_thickness;
-        var pipe1_id = new THREE.CylinderGeometry(inside_radius, inside_radius, length_w1 + length_w2 + 2, 90);
-        var pipe1_id_bsp = new ThreeBSP( pipe1_id );
+        if (inside_radius > 0) {
+            var pipe1_id = new THREE.CylinderGeometry(inside_radius, inside_radius, length_w1 + length_w2 + 2, 90);
+            var pipe1_id_bsp = new ThreeBSP( pipe1_id );
 
-        var pipe1_sub = pipe1_bsp.subtract(pipe1_id_bsp);
-        var pipe1 = pipe1_sub.toMesh(material);
+            pipe1_bsp = pipe1_bsp.subtract(pipe1_id_bsp);
+        }
+        var pipe1 = pipe1_bsp.toMesh(material);
 
         pipe1.position.set(0, -((length_w1 - length_w2) / 2.0), 0);
         scene.add(pipe1);
