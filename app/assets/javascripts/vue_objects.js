@@ -1,24 +1,24 @@
 var vm;
 
 $(document).ready(function () {
-    axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
+    axios.defaults.headers.common["Authorization"] = AUTH_TOKEN;
 
     if(document.getElementById("vue-app")){
         vm = new Vue({
-            el: '#vue-app',
+            el: "#vue-app",
             data: {
                 start_panel_data: {
                     user_name: current_user,
-                    job_description: '',
+                    job_description: "",
                     walltime_hours: 1
                 },
                 technique_data: {
-                    selected: 'gmaw'
+                    selected: "gmaw"
                 },
                 dimension_data: {
                     fixture_shapes: [
                         {
-                            value: 'plate', title: 'Plate',
+                            value: "plate", title: "Plate",
                             dimensions: {
                                 width_w1: 12,
                                 width_w2: 12,
@@ -26,16 +26,16 @@ $(document).ready(function () {
                                 length: 4
                             },
                             joint_designs: [
-                                'bead_on_plate',
-                                'bevel_groove',
-                                'compound_bevel',
-                                'j_groove',
-                                'u_groove',
-                                'v_groove'
+                                "bead_on_plate",
+                                "bevel_groove",
+                                "compound_bevel",
+                                "j_groove",
+                                "u_groove",
+                                "v_groove"
                             ]
                         },
                         {
-                            value: 't_plate', title: 'T-Plate',
+                            value: "t_plate", title: "T-Plate",
                             dimensions: {
                                 thickness_t1: 0.5,
                                 thickness_t2: 0.5,
@@ -45,11 +45,11 @@ $(document).ready(function () {
                                 height_h: 4
                             },
                             joint_designs: [
-                                't_bevel'
+                                "t_bevel"
                             ]
                         },
                         {
-                            value: 'pipe', title: 'Pipe',
+                            value: "pipe", title: "Pipe",
                             dimensions: {
                                 outer_diameter: 6,
                                 wall_thickness: 0.2,
@@ -57,16 +57,16 @@ $(document).ready(function () {
                                 length_w2: 4
                             },
                             joint_designs: [
-                                'bead_on_plate',
-                                'bevel_groove',
-                                'compound_bevel',
-                                'j_groove',
-                                'u_groove',
-                                'v_groove'
+                                "bead_on_plate",
+                                "bevel_groove",
+                                "compound_bevel",
+                                "j_groove",
+                                "u_groove",
+                                "v_groove"
                             ]
                         },
                         {
-                            value: 't_pipe', title: 'T-Pipe',
+                            value: "t_pipe", title: "T-Pipe",
                             dimensions: {
                                 outer_diameter: 6,
                                 wall_thickness: 0.5,
@@ -76,11 +76,11 @@ $(document).ready(function () {
                                 flange_height_h: 2
                             },
                             joint_designs: [
-                                't_bevel'
+                                "t_bevel"
                             ]
                         },
                         {
-                            value: 'lap_joint', title: 'Lap Joint',
+                            value: "lap_joint", title: "Lap Joint",
                             dimensions: {
                                 thickness_t1: 0.5,
                                 thickness_t2: 0.5,
@@ -90,14 +90,14 @@ $(document).ready(function () {
                                 length: 20
                             },
                             joint_designs: [
-                                'lap_bevel'
+                                "lap_bevel"
                             ]
                         }
                     ],
-                    selected: 'plate'
+                    selected: "plate"
                 },
                 joint_data: {
-                    selected: 'bead_on_plate',
+                    selected: "bead_on_plate",
                     dimensions: {
                         a: 0.1,
                         b: 0.2,
@@ -115,10 +115,10 @@ $(document).ready(function () {
                     }
                 },
                 bead_data: {
-                    selected: 'parabolic',
+                    selected: "parabolic",
                     beads: [
                         {
-                            value: 'parabolic', title: 'Parabolic',
+                            value: "parabolic", title: "Parabolic",
                             dimensions: {
                                 x: 0.0,
                                 y: 0.35,
@@ -138,7 +138,7 @@ $(document).ready(function () {
                             }
                         },
                         {
-                            value: 'parabolic', title: 'Parabolic',
+                            value: "parabolic", title: "Parabolic",
                             dimensions: {
                                 x: 0.0,
                                 y: 0.35,
@@ -161,13 +161,13 @@ $(document).ready(function () {
                 },
                 material_data: {
                     base_material1: {
-                        selected: 'X65'
+                        selected: "X65"
                     },
                     base_material2: {
-                        selected: 'X65'
+                        selected: "X65"
                     },
                     filler_material: {
-                        selected: 'MIL-100S-1'
+                        selected: "MIL-100S-1"
                     }
                 },
                 procedure_data: {
@@ -191,7 +191,7 @@ $(document).ready(function () {
                     var shape = this.$data.dimension_data.fixture_shapes.find(function (shape) {
                         return shape.value === this.$data.dimension_data.selected;
                     }, this);
-                    if ( (shape.value === 'pipe') || (shape.value === 't_pipe') ) {
+                    if ( (shape.value === "pipe") || (shape.value === "t_pipe") ) {
                         if (shape.dimensions.wall_thickness > shape.dimensions.outer_diameter) {
                             shape.dimensions.wall_thickness = shape.dimensions.outer_diameter * 0.5;
                         }
@@ -240,7 +240,7 @@ $(document).ready(function () {
                     if (simulation_id == null) {
                         // Create a new Simulation
                         // TODO Add a "processing" notice for the user
-                        axios.post(Routes.simulations_path({format: 'json'}), { simulation_data: vm.$root.$data, authenticity_token: AUTH_TOKEN })
+                        axios.post(Routes.simulations_path({format: "json"}), { simulation_data: vm.$root.$data, authenticity_token: AUTH_TOKEN })
                             .then(function (response) {
                                 console.log(response);
                                 this.window.location.href = Routes.root_path();
@@ -253,7 +253,7 @@ $(document).ready(function () {
                     else {
                         // Update an existing simulation
                         // TODO Add a "processing" notice for the user
-                        axios.put(Routes.simulation_path(simulation_id, {format: 'json'}), { simulation_data: vm.$root.$data, authenticity_token: AUTH_TOKEN })
+                        axios.put(Routes.simulation_path(simulation_id, {format: "json"}), { simulation_data: vm.$root.$data, authenticity_token: AUTH_TOKEN })
                             .then(function (response) {
                                 console.log(response);
                                 this.window.location.href = Routes.root_path();
@@ -267,10 +267,10 @@ $(document).ready(function () {
             }
         });
 
-        if (typeof simulation_id !== 'undefined' && simulation_id != null) {
+        if (typeof simulation_id !== "undefined" && simulation_id != null) {
             console.log("Loading simulation from server");
             // TODO Add a "processing" notice for the user
-            axios.get(Routes.simulation_path(simulation_id, {format: 'json'}))
+            axios.get(Routes.simulation_path(simulation_id, {format: "json"}))
                 .then(function (response) {
                     //console.log(response);
                     setInitialVueState(vm, response.data.job_cache)
@@ -283,7 +283,7 @@ $(document).ready(function () {
             render_three_shape(vm.$data);
         };
 
-        $('#form-submit-button').on('click', function () {
+        $("#form-submit-button").on("click", function () {
                 vm.saveSimulation();
             }
         );
