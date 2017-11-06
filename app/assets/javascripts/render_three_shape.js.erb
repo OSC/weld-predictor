@@ -6,6 +6,17 @@ function pixelsToInches(pixels) {
     return pixels / 100.0;
 }
 
+function rotateObject(object, degreeX = 0, degreeY = 0, degreeZ = 0){
+
+    degreeX = (degreeX * Math.PI)/180;
+    degreeY = (degreeY * Math.PI)/180;
+    degreeZ = (degreeZ * Math.PI)/180;
+
+    object.rotateX(degreeX);
+    object.rotateY(degreeY);
+    object.rotateZ(degreeZ);
+}
+
 // Global variables
 var renderer;
 var scene;
