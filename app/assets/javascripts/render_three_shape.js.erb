@@ -6,7 +6,7 @@ function pixelsToInches(pixels) {
     return pixels / 100.0;
 }
 
-function rotateObject(object, degreeX = 0, degreeY = 0, degreeZ = 0){
+function rotateObject(object, degreeX, degreeY, degreeZ){
 
     degreeX = (degreeX * Math.PI)/180;
     degreeY = (degreeY * Math.PI)/180;
@@ -125,11 +125,64 @@ function render_three_shape(vue_data) {
         var root_gap = vue_data.joint_data.root_gap.present ? inchesToPixels(vue_data.joint_data.root_gap.range) : 0;
 
         var cube = new THREE.CubeGeometry(width_w1, height, depth);
-        cube = new THREE.Mesh( cube, material );
+        var cube2 = new THREE.CubeGeometry(width_w2, height, depth);
+
+        // For custom joint types that are not bead on plate, we need to convert to BSP for subtraction
+        if (vue_data.joint_data.selected !== 'bead_on_plate') {
+            cube = new ThreeBSP( cube );
+            cube2 = new ThreeBSP( cube2 );
+        } else {
+            cube = new THREE.Mesh( cube, material );
+            cube2 = new THREE.Mesh( cube2, material );
+        }
+
+        // Add the grooves
+        if (vue_data.joint_data.selected === 'bevel_groove') {
+            var joint_measurement_a = inchesToPixels(vue_data.joint_data.dimensions.a);
+            var joint_measurement_beta = vue_data.joint_data.dimensions.beta;
+            console.log(joint_measurement_beta);
+
+            var bevel_block = new THREE.CubeGeometry(height, width_w2 * 8, depth);
+
+            rotateObject(bevel_block, 0, 0, -joint_measurement_beta);
+            bevel_block = new THREE.Mesh( bevel_block );
+
+            console.log(-width_w2 / 2.0);
+            console.log( -(height / 2.0));
+            console.log((height / 2.0) * (joint_measurement_beta / 90));
+            var bevel_block_left = (-width_w2 / 2.0) + -(height / 2.0) + ((height / 2.0) * (joint_measurement_beta / 90.0)); //
+            console.log(bevel_block_left);
+            var bevel_block_up = joint_measurement_a;
+
+            bevel_block.position.set(bevel_block_left - 1, bevel_block_up, 0);
+
+
+            bevel_block = new ThreeBSP( bevel_block );
+
+            cube2 = cube2.subtract(bevel_block);
+            //scene.add(bevel_block.toMesh(material));
+            //cube2.subtract(bevel_block);
+
+        } else if (vue_data.joint_data.selected === 'compound_bevel') {
+
+        } else if (vue_data.joint_data.selected === 'j_groove') {
+
+        } else if (vue_data.joint_data.selected === 'u_groove') {
+
+        } else if (vue_data.joint_data.selected === 'v_groove') {
+
+        } else {
+            // For bead_on_plate and other, just use the meshes
+
+        }
+
+        if (vue_data.joint_data.selected !== 'bead_on_plate') {
+            cube = cube.toMesh( material );
+            cube2 = cube2.toMesh( material );
+        }
+
         cube.position.set((-(width_w1 * 0.5) - (root_gap * 0.5)), height, 0);
         scene.add(cube);
-        var cube2 = new THREE.CubeGeometry(width_w2, height, depth);
-        cube2 = new THREE.Mesh( cube2, material );
         cube2.position.set((width_w2 * 0.5) + (root_gap * 0.5), height, 0);
         scene.add(cube2);
     }
@@ -318,6 +371,7 @@ function render_three_shape(vue_data) {
         scene.add(pipe1);
 
 
+        // TODO: Does root gap get added to the outside diameter?
         var radius_od_2 = radius_od + root_gap + flange_height;
         var pipe2 = new THREE.CylinderGeometry(radius_od_2, radius_od_2, flange_thickness, 90);
         var pipe2_bsp = new ThreeBSP( pipe2 );
