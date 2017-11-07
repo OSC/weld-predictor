@@ -17,6 +17,17 @@ function rotateObject(object, degreeX, degreeY, degreeZ){
     object.rotateZ(degreeZ);
 }
 
+function radians(angle) {
+    return Math.PI * (angle/180);
+}
+
+function blockIntersect(width, height, angle) {
+    var rad = radians(angle);
+    var w = width / Math.cos(rad);
+    var h = height / Math.sin(rad);
+    return Math.min(w, h);
+}
+
 // Global variables
 var renderer;
 var scene;
@@ -138,30 +149,26 @@ function render_three_shape(vue_data) {
 
         // Add the grooves
         if (vue_data.joint_data.selected === 'bevel_groove') {
+
             var joint_measurement_a = inchesToPixels(vue_data.joint_data.dimensions.a);
             var joint_measurement_beta = vue_data.joint_data.dimensions.beta;
-            console.log(joint_measurement_beta);
 
-            var bevel_block = new THREE.CubeGeometry(height, width_w2 * 8, depth);
+            var bevel_block_w = height;
+            var bevel_block_h = width_w2 * 8;
+            var bevel_block_intersect = blockIntersect(bevel_block_w, bevel_block_h, joint_measurement_beta);
+            var bevel_block = new THREE.CubeGeometry(bevel_block_w, bevel_block_h, depth);
 
             rotateObject(bevel_block, 0, 0, -joint_measurement_beta);
             bevel_block = new THREE.Mesh( bevel_block );
 
-            console.log(-width_w2 / 2.0);
-            console.log( -(height / 2.0));
-            console.log((height / 2.0) * (joint_measurement_beta / 90));
-            var bevel_block_left = (-width_w2 / 2.0) + -(height / 2.0) + ((height / 2.0) * (joint_measurement_beta / 90.0)); //
-            console.log(bevel_block_left);
-            var bevel_block_up = joint_measurement_a;
+            var bevel_block_left = -((width_w2 / 2.0) + (bevel_block_intersect / 2));
+            var bevel_block_up = -(bevel_block_w / 2.0) + joint_measurement_a;
 
-            bevel_block.position.set(bevel_block_left - 1, bevel_block_up, 0);
-
+            bevel_block.position.set(bevel_block_left, bevel_block_up, 0);
 
             bevel_block = new ThreeBSP( bevel_block );
 
             cube2 = cube2.subtract(bevel_block);
-            //scene.add(bevel_block.toMesh(material));
-            //cube2.subtract(bevel_block);
 
         } else if (vue_data.joint_data.selected === 'compound_bevel') {
 
