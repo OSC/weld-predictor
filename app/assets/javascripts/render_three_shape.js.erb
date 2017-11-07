@@ -21,7 +21,7 @@ function radians(angle) {
     return Math.PI * (angle/180);
 }
 
-function blockIntersect(width, height, angle) {
+function blockIntersectX(width, height, angle) {
     var rad = radians(angle);
     var w = width / Math.cos(rad);
     var h = height / Math.sin(rad);
@@ -72,19 +72,33 @@ function reset_camera() {
     }
 }
 
+// FIXME: GPU memory is still not cleaning up appropriately
+function memCleanup(object) {
+    if ( object.geometry ) object.geometry.dispose();
+    if ( object.material ) {
+        if (object.material.map) object.material.map.dispose();
+        object.material.dispose();
+    }
+    scene.remove(object);
+}
+
+
 function render_three_shape(vue_data) {
 
     if (scene === undefined) {
         // Initialize the scene and objects on first run.
         init_three();
     } else {
-        // If the scene has already been defined, remove the existing meshes.
+        //If the scene has already been defined, remove the existing meshes.
         for (var i = scene.children.length - 1; i >= 0; i--) {
             if (scene.children[i].isMesh) {
-                scene.children.splice(i, 1);
+                var mesh = scene.children[i];
+                memCleanup(mesh);
+                scene.remove(mesh);
             }
         }
     }
+
 
     // Don't show a root gap when bead on plate selected
     if (vue_data.joint_data.selected === 'bead_on_plate') {
@@ -155,13 +169,13 @@ function render_three_shape(vue_data) {
 
             var bevel_block_w = height;
             var bevel_block_h = width_w2 * 8;
-            var bevel_block_intersect = blockIntersect(bevel_block_w, bevel_block_h, joint_measurement_beta);
+            var bevel_block_intersect = blockIntersectX(bevel_block_w, bevel_block_h, joint_measurement_beta);
             var bevel_block = new THREE.CubeGeometry(bevel_block_w, bevel_block_h, depth);
 
             rotateObject(bevel_block, 0, 0, -joint_measurement_beta);
             bevel_block = new THREE.Mesh( bevel_block );
 
-            var bevel_block_left = -((width_w2 / 2.0) + (bevel_block_intersect / 2));
+            var bevel_block_left = -((width_w2 / 2.0) + (bevel_block_intersect / 2.0));
             var bevel_block_up = -(bevel_block_w / 2.0) + joint_measurement_a;
 
             bevel_block.position.set(bevel_block_left, bevel_block_up, 0);
@@ -170,7 +184,11 @@ function render_three_shape(vue_data) {
 
             cube2 = cube2.subtract(bevel_block);
 
+            memCleanup(bevel_block);
+
         } else if (vue_data.joint_data.selected === 'compound_bevel') {
+
+
 
         } else if (vue_data.joint_data.selected === 'j_groove') {
 
@@ -180,7 +198,6 @@ function render_three_shape(vue_data) {
 
         } else {
             // For bead_on_plate and other, just use the meshes
-
         }
 
         if (vue_data.joint_data.selected !== 'bead_on_plate') {
@@ -247,6 +264,10 @@ function render_three_shape(vue_data) {
         var length = inchesToPixels(tee_joint_data.dimensions.length_l);
         var height = inchesToPixels(tee_joint_data.dimensions.height_h);
         var root_gap = vue_data.joint_data.root_gap.present ? inchesToPixels(vue_data.joint_data.root_gap.range) : 0;
+
+        if (vue_data.joint_data.selected === 't_bevel') {
+
+        }
 
         var cube = new THREE.CubeGeometry(width_w1 + width_w2, thickness_t1, length);
         cube = new THREE.Mesh( cube, material );
