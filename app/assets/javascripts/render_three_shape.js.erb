@@ -28,6 +28,13 @@ function blockIntersectX(width, height, angle) {
     return Math.min(w, h);
 }
 
+function blockIntersectY(width, height, angle) {
+    var rad = radians(angle);
+    var w = width / Math.sin(rad);
+    var h = height / Math.cos(rad);
+    return Math.min(w, h);
+}
+
 // Global variables
 var renderer;
 var scene;
@@ -261,20 +268,55 @@ function render_three_shape(vue_data) {
         var thickness_t2 = inchesToPixels(tee_joint_data.dimensions.thickness_t2);
         var width_w1 = inchesToPixels(tee_joint_data.dimensions.width_w1);
         var width_w2 = inchesToPixels(tee_joint_data.dimensions.width_w2);
-        var length = inchesToPixels(tee_joint_data.dimensions.length_l);
+        var depth = inchesToPixels(tee_joint_data.dimensions.length_l);
         var height = inchesToPixels(tee_joint_data.dimensions.height_h);
         var root_gap = vue_data.joint_data.root_gap.present ? inchesToPixels(vue_data.joint_data.root_gap.range) : 0;
 
+        // Base mesh
+        var cube = new THREE.CubeGeometry(width_w1 + width_w2, thickness_t1, depth);
+        // Upper mesh
+        var cube2 = new THREE.CubeGeometry(thickness_t2, height, depth);
+
         if (vue_data.joint_data.selected === 't_bevel') {
+            cube = new THREE.Mesh( cube, material );
+            cube2 = new ThreeBSP( cube2 );
+
+            // Get the measurements
+            var joint_measurement_a = inchesToPixels(vue_data.joint_data.dimensions.a);
+            var joint_measurement_b = inchesToPixels(vue_data.joint_data.dimensions.b);
+            var joint_measurement_alpha = vue_data.joint_data.dimensions.alpha;
+            var joint_measurement_beta = vue_data.joint_data.dimensions.beta;
+
+            var bevel_block_w = thickness_t2;
+            var bevel_block_h = width_w2 * 8;
+            var bevel_block_intersect = blockIntersectX(bevel_block_w, bevel_block_h, joint_measurement_beta);
+            var bevel_block = new THREE.CubeGeometry(bevel_block_w, bevel_block_h, depth);
+            rotateObject(bevel_block, 0, 0, -joint_measurement_beta);
+            bevel_block = new THREE.Mesh( bevel_block );
+
+            scene.add(bevel_block);
+
+            var bevel_block_right = 0;
+            var bevel_block_up = -200;
+
+            bevel_block.position.set(bevel_block_right, bevel_block_up, 0);
+
+            bevel_block = new ThreeBSP( bevel_block );
+
+            cube2 = cube2.subtract(bevel_block);
+
+            //////////
+
+//            memCleanup(bevel_block);
 
         }
 
-        var cube = new THREE.CubeGeometry(width_w1 + width_w2, thickness_t1, length);
-        cube = new THREE.Mesh( cube, material );
+        //cube = new THREE.Mesh( cube, material );
+        cube2 = cube2.toMesh( material );
+
         cube.position.set((width_w2 * 0.5) - (width_w1 * 0.5), (-(thickness_t1 * 0.5) - (root_gap * 0.5)), 0);
         scene.add(cube);
-        var cube2 = new THREE.CubeGeometry(thickness_t2, height, length);
-        cube2 = new THREE.Mesh( cube2, material );
+
         cube2.position.set(0, (height * 0.5) + (root_gap * 0.5), 0);
         scene.add(cube2);
     }
