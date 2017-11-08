@@ -48,7 +48,8 @@ function init_three() {
 
     width = $("#weld-render-view").width();
     height = width * 0.75;
-    renderer = new THREE.WebGLRenderer({ antialias: true });
+    var canvas = document.getElementById("weld-canvas");
+    renderer = new THREE.WebGLRenderer({ antialias: true, canvas: canvas });
     renderer.setClearColor( 0xe0e0eb );
     renderer.setPixelRatio( window.devicePixelRatio );
     renderer.setSize( width, height );
@@ -81,21 +82,27 @@ function reset_camera() {
 
 // FIXME: GPU memory is still not cleaning up appropriately
 function memCleanup(object) {
+
+    scene.remove(object);
     if ( object.geometry ) object.geometry.dispose();
     if ( object.material ) {
         if (object.material.map) object.material.map.dispose();
         object.material.dispose();
     }
-    scene.remove(object);
+    material.dispose();
 }
 
 
 function render_three_shape(vue_data) {
 
+
     if (scene === undefined) {
         // Initialize the scene and objects on first run.
         init_three();
     } else {
+        var canvas = document.getElementById("weld-canvas");
+        var gl = canvas.getContext('webgl');
+
         //If the scene has already been defined, remove the existing meshes.
         for (var i = scene.children.length - 1; i >= 0; i--) {
             if (scene.children[i].isMesh) {
@@ -104,6 +111,8 @@ function render_three_shape(vue_data) {
                 scene.remove(mesh);
             }
         }
+        gl.flush();
+        gl.finish();
     }
 
 
@@ -284,30 +293,34 @@ function render_three_shape(vue_data) {
             // Get the measurements
             var joint_measurement_a = inchesToPixels(vue_data.joint_data.dimensions.a);
             var joint_measurement_b = inchesToPixels(vue_data.joint_data.dimensions.b);
-            var joint_measurement_alpha = vue_data.joint_data.dimensions.alpha;
-            var joint_measurement_beta = vue_data.joint_data.dimensions.beta;
+            var joint_measurement_alpha = 90 - vue_data.joint_data.dimensions.alpha;
+            var joint_measurement_beta = 90 - vue_data.joint_data.dimensions.beta;
 
+
+            // Build right side (a) bevel
             var bevel_block_w = thickness_t2;
             var bevel_block_h = width_w2 * 8;
-            var bevel_block_intersect = blockIntersectX(bevel_block_w, bevel_block_h, joint_measurement_beta);
+            var bevel_block_intersect = blockIntersectY(bevel_block_w, bevel_block_h, joint_measurement_alpha);
             var bevel_block = new THREE.CubeGeometry(bevel_block_w, bevel_block_h, depth);
-            rotateObject(bevel_block, 0, 0, -joint_measurement_beta);
             bevel_block = new THREE.Mesh( bevel_block );
-
-            scene.add(bevel_block);
-
-            var bevel_block_right = 0;
-            var bevel_block_up = -200;
-
+            rotateObject(bevel_block, 0, 0, -joint_measurement_alpha);
+            var bevel_block_right = (thickness_t2 / 2.0) - joint_measurement_a;
+            var bevel_block_up = -((height / 2.0) + (bevel_block_intersect / 2.0));
             bevel_block.position.set(bevel_block_right, bevel_block_up, 0);
+            var bevel_block_bsp = new ThreeBSP( bevel_block );
+            cube2 = cube2.subtract(bevel_block_bsp);
 
-            bevel_block = new ThreeBSP( bevel_block );
+            // build left side (b) bevel
+            // reset rotation
+            rotateObject(bevel_block, 0, 0, joint_measurement_alpha);
 
-            cube2 = cube2.subtract(bevel_block);
-
-            //////////
-
-//            memCleanup(bevel_block);
+            rotateObject(bevel_block, 0, 0, joint_measurement_beta);
+            bevel_block_intersect = blockIntersectY(bevel_block_w, bevel_block_h, joint_measurement_beta);
+            bevel_block_right = -(thickness_t2 / 2.0) + joint_measurement_b;
+            bevel_block_up = -((height / 2.0) + (bevel_block_intersect / 2.0));
+            bevel_block.position.set(bevel_block_right, bevel_block_up, 0);
+            bevel_block_bsp = new ThreeBSP(bevel_block);
+            cube2 = cube2.subtract(bevel_block_bsp);
 
         }
 
