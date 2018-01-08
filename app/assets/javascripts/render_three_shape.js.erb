@@ -62,14 +62,43 @@ function init_three() {
     controls = new THREE.TrackballControls( camera, renderer.domElement );
     controls.minDistance = 100;
     controls.maxDistance = 10000;
-    var ambientlight = new THREE.AmbientLight( 0xffffff );
-    ambientlight.intensity = 0.6;
-    scene.add( ambientlight );
-    var light = new THREE.PointLight( 0xffffff );
-    light.position.copy( camera.position );
-    scene.add( light );
+    //var ambientlight = new THREE.AmbientLight( 0xffffff );
+    //ambientlight.intensity = 1.0;
+    //scene.add( ambientlight );
+    var light1 = new THREE.PointLight( 0xffffff );
+    light1.position.set( 1000, 1000, 2000 );
+    //light2.position.set( 0, 500, 0);
+    //scene.add( light1 );
+    //scene.add( hemiLight );
 
-    material = new THREE.MeshLambertMaterial({color: '#a8b2c1', map: new THREE.TextureLoader().load( "<%= asset_path 'metal.png' %>" )});
+    var hemiLight = new THREE.HemisphereLight( 0xffffff, 0xffffff, 1 );
+    hemiLight.position.set( 0, 5000, 0 );
+    scene.add( hemiLight );
+    var hemiLightHelper = new THREE.HemisphereLightHelper( hemiLight, 10 );
+    scene.add( hemiLightHelper );
+
+    dirLight = new THREE.DirectionalLight( 0xffffff, 1 );
+    dirLight.color.setHSL( 0.1, 1, 0.95 );
+    dirLight.position.set( -1, 1.75, 1 );
+    dirLight.position.multiplyScalar( 300 );
+    scene.add( dirLight );
+    dirLight.castShadow = true;
+    dirLight.shadow.mapSize.width = 2048;
+    dirLight.shadow.mapSize.height = 2048;
+    var d = 500;
+    dirLight.shadow.camera.left = -d;
+    dirLight.shadow.camera.right = d;
+    dirLight.shadow.camera.top = d;
+    dirLight.shadow.camera.bottom = -d;
+    dirLight.shadow.camera.far = 3500;
+    dirLight.shadow.bias = -0.0001;
+
+    // Uncomment to add an indicator displaying the light source.
+    //dirLightHeper = new THREE.DirectionalLightHelper( dirLight, 10 )
+    //scene.add( dirLightHeper );
+
+    //material = new THREE.MeshLambertMaterial({color: '#a8b2c1', map: new THREE.TextureLoader().load( "<%= asset_path 'metal.png' %>" )});
+    material = new THREE.MeshStandardMaterial({metalness: 0.9, roughness: 0.78});
 }
 
 // Reset the view to the default state
