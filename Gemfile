@@ -46,7 +46,6 @@ gem 'bootstrap-sass', '~> 3.3'
 gem 'bootstrap_form', '~> 2.5'
 gem 'font-awesome-sass', '~> 4.6'
 gem 'dotenv-rails', '~> 2.1', require: 'dotenv/rails-now'
-gem 'paperclip', '~> 4.3'
 gem 'jquery-datatables-rails', '~> 3.4'
 gem 'rails_12factor', group: :production
 gem 'osc_machete_rails', '~> 1.2'
